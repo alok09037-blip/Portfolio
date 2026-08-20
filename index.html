@@ -1,1037 +1,760 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alok Kumar | Finance & Data Analytics</title>
-    <meta name="description" content="Portfolio of Alok Kumar - Finance & Data Analytics Professional">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Custom Config for Tailwind -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        fin: {
-                            dark: '#0B1120', // Deepest Slate
-                            card: '#151E32', // Card Background
-                            accent: '#3B82F6', // Blue
-                            success: '#10B981', // Green (Growth)
-                            text: '#E2E8F0', // Light Text
-                            muted: '#94A3B8' // Muted Text
-                        }
-                    },
-                    animation: {
-                        'ticker': 'ticker 30s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        ticker: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-                            '50%': { opacity: '.5', boxShadow: '0 0 0px rgba(59, 130, 246, 0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Glassmorphism utilities */
-        .glass {
-            background: rgba(21, 30, 50, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-card {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Grid Background */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
-
-        /* Modal Transition */
-        .modal {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
-</head>
-<body class="bg-fin-dark text-fin-text antialiased selection:bg-fin-accent selection:text-white overflow-x-hidden">
-
-    <!-- Stock Ticker Header -->
-    <div class="bg-black/40 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap relative z-50">
-        <div class="inline-block animate-ticker font-mono text-xs md:text-sm tracking-wider">
-            <!-- Ticker Items from CV Skills -->
-            <span class="mx-4 text-fin-muted">FIN.MODELING <span class="text-fin-success">▲ SKILL</span></span>
-            <span class="mx-4 text-fin-muted">DCF.VALUATION <span class="text-fin-success">▲ SKILL</span></span>
-            <span class="mx-4 text-fin-muted">RATIO.ANALYSIS <span class="text-fin-success">▲ SKILL</span></span>
-            <span class="mx-4 text-fin-muted">TALLY.ERP9 <span class="text-fin-success">▲ EXP</span></span>
-            <span class="mx-4 text-fin-muted">ADV.EXCEL <span class="text-fin-success">▲ TOOL</span></span>
-            <span class="mx-4 text-fin-muted">ESG.SUSTAINABILITY <span class="text-fin-success">▲ CERT</span></span>
-            <span class="mx-4 text-fin-muted">AUDIT <span class="text-fin-success">▲ COMP</span></span>
-            <!-- Repeat -->
-            <span class="mx-4 text-fin-muted">FIN.MODELING <span class="text-fin-success">▲ SKILL</span></span>
-            <span class="mx-4 text-fin-muted">DCF.VALUATION <span class="text-fin-success">▲ SKILL</span></span>
-            <span class="mx-4 text-fin-muted">RATIO.ANALYSIS <span class="text-fin-success">▲ SKILL</span></span>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-10 w-full z-40 transition-all duration-300 py-4 bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-            
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all border border-white/10">
-                    AK
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-lg font-bold tracking-tight text-white leading-tight">Alok Kumar</span>
-                    <span class="text-[10px] uppercase tracking-widest text-fin-muted font-mono">FINANCE & DATA ANALYTICS</span>
-                </div>
-            </a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-1 p-1 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-                <a href="#home" class="nav-link px-4 py-2 rounded-lg text-fin-muted hover:bg-white/10 hover:text-white text-sm font-medium transition-all" data-section="home">Home</a>
-                <a href="#about" class="nav-link px-4 py-2 rounded-lg text-fin-muted hover:bg-white/10 hover:text-white text-sm font-medium transition-all" data-section="about">About</a>
-                <a href="#experience" class="nav-link px-4 py-2 rounded-lg text-fin-muted hover:bg-white/10 hover:text-white text-sm font-medium transition-all" data-section="experience">History</a>
-                <a href="#projects" class="nav-link px-4 py-2 rounded-lg text-fin-muted hover:bg-white/10 hover:text-white text-sm font-medium transition-all" data-section="projects">Projects</a>
-                <a href="#certifications" class="nav-link px-4 py-2 rounded-lg text-fin-muted hover:bg-white/10 hover:text-white text-sm font-medium transition-all" data-section="certifications">Certifications</a>
-            </div>
-
-            <div class="hidden md:flex items-center gap-3">
-                 <a href="#contact" class="px-5 py-2.5 bg-fin-accent hover:bg-blue-600 text-white rounded-lg transition-all font-medium shadow-lg shadow-blue-500/20 text-sm flex items-center gap-2 border border-blue-400/20">
-                    <i class="ph ph-calendar-plus"></i>
-                    <span>Connect</span>
-                </a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-white bg-white/10 rounded-lg border border-white/10">
-                <i class="ph ph-list text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-fin-card border-b border-white/10 shadow-2xl p-4 flex flex-col gap-2 md:hidden">
-            <a href="#home" class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/5 font-medium text-fin-text">Home</a>
-            <a href="#about" class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/5 font-medium text-fin-text">About</a>
-            <a href="#experience" class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/5 font-medium text-fin-text">Experience</a>
-            <a href="#projects" class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/5 font-medium text-fin-text">Projects</a>
-            <a href="#certifications" class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/5 font-medium text-fin-text">Certifications</a>
-            <a href="#contact" class="mobile-link block px-4 py-3 rounded-lg bg-fin-accent text-white font-medium text-center mt-2">Connect</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative pt-40 pb-20 px-4 min-h-screen flex items-center overflow-hidden bg-grid">
-        <!-- Abstract Background Glows -->
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
-        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-green-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
-
-        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-            
-            <!-- Text Content -->
-            <div class="space-y-8 animate-fade-in-up">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full text-xs font-mono font-bold tracking-wide">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    AVAILABLE FOR OPPORTUNITIES
-                </div>
-
-                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
-                    Driving Value <br/>
-                    Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Finance & Data</span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-fin-muted max-w-xl leading-relaxed">
-                    Aspiring Investment Banking professional and PGDM student with a strong foundation in Commerce and <span class="text-white font-semibold">3.5 years</span> of hands-on Data Analytics experience.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#experience" class="px-8 py-4 bg-white text-fin-dark rounded-xl font-bold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-2 group">
-                        <i class="ph ph-briefcase text-xl group-hover:text-blue-600 transition-colors"></i>
-                        Experience
-                    </a>
-                    <button onclick="window.print()" class="px-8 py-4 bg-white/5 text-white border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-colors flex items-center gap-2 backdrop-blur-sm">
-                        <i class="ph ph-download-simple text-xl"></i>
-                        Download CV
-                    </button>
-                    <a href="#contact" class="px-8 py-4 bg-transparent text-fin-accent border border-fin-accent/30 rounded-xl font-bold hover:bg-fin-accent/10 transition-colors flex items-center gap-2">
-                        <i class="ph ph-calendar text-xl"></i>
-                        Book Call
-                    </a>
-                </div>
-
-                <!-- Social Proof -->
-                <div class="pt-8 border-t border-white/5 flex items-center gap-8">
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-bold text-white">3.5</span>
-                        <span class="text-xs text-fin-muted uppercase tracking-wider">Years Exp.</span>
-                    </div>
-                    <div class="h-8 w-px bg-white/10"></div>
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-bold text-white">9</span>
-                        <span class="text-xs text-fin-muted uppercase tracking-wider">Certifications</span>
-                    </div>
-                    <div class="h-8 w-px bg-white/10"></div>
-                     <div class="flex flex-col">
-                        <span class="text-2xl font-bold text-white">PGDM</span>
-                        <span class="text-xs text-fin-muted uppercase tracking-wider">Student</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visual Dashboard Representation -->
-            <div class="relative group perspective-1000 hidden lg:block">
-                <!-- Main Card -->
-                <div class="relative z-20 bg-fin-card border border-white/10 rounded-2xl p-6 shadow-2xl shadow-black/50 transform transition-transform duration-700 hover:rotate-y-6 hover:rotate-x-6">
-                    <!-- Fake Browser Header -->
-                    <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
-                        <div class="flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
-                        </div>
-                        <div class="ml-4 px-3 py-1 bg-black/20 rounded text-xs text-fin-muted font-mono w-full">
-                            alok_portfolio_v3.0
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Profile Area -->
-                        <div class="col-span-1 row-span-2 relative rounded-xl overflow-hidden border border-white/5 group-hover:border-blue-500/30 transition-colors">
-                             <img 
-                              src="IMG_2847.PNG" 
-                              alt="Alok Kumar" 
-                              class="w-full h-full object-cover"
-                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Alok+Kumar&background=0B1120&color=fff&size=512';"
-                            >
-                            <div class="absolute inset-0 bg-gradient-to-t from-fin-dark via-transparent to-transparent opacity-80"></div>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-white font-bold">Alok Kumar</p>
-                                <p class="text-xs text-fin-accent">Greater Noida, UP</p>
-                            </div>
-                        </div>
-
-                        <!-- Stat Card 1 -->
-                        <div class="bg-black/20 p-4 rounded-xl border border-white/5">
-                            <div class="flex justify-between items-start mb-2">
-                                <i class="ph ph-trend-up text-green-400 text-xl"></i>
-                                <span class="text-[10px] text-green-400 bg-green-400/10 px-1.5 py-0.5 rounded">+NAAC</span>
-                            </div>
-                            <p class="text-xs text-fin-muted mt-2">Accreditation Secured</p>
-                        </div>
-
-                        <!-- Stat Card 2 -->
-                         <div class="bg-black/20 p-4 rounded-xl border border-white/5">
-                            <i class="ph ph-chart-bar text-blue-400 text-xl mb-2"></i>
-                             <p class="text-xs text-fin-muted">ERP Systems</p>
-                            <p class="text-md font-mono font-bold text-white">Implemented</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-4 relative">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="text-fin-accent font-mono text-sm tracking-widest uppercase mb-4 block">Executive Summary</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Career Objective</h2>
-            
-            <div class="glass-card p-8 md:p-12 rounded-2xl relative overflow-hidden">
-                <i class="ph ph-quotes text-6xl text-white/5 absolute top-4 left-4"></i>
-                <p class="relative z-10 text-lg md:text-xl text-fin-muted leading-relaxed">
-                    "Aspiring Investment Banking professional and PGDM student with a strong foundation in Commerce and 3.5 years of hands-on Data Analytics experience. Seeking to leverage skills in financial modeling, valuation (DCF), and financial statement analysis to drive value and support strategic decision-making."
-                </p>
-            </div>
-
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
-                <div class="p-4 border border-white/5 bg-white/5 rounded-lg">
-                    <h4 class="text-white font-bold text-sm mb-1">Accounting Software</h4>
-                    <p class="text-xs text-fin-muted">Tally ERP 9, Financial Accounting</p>
-                </div>
-                <div class="p-4 border border-white/5 bg-white/5 rounded-lg">
-                    <h4 class="text-white font-bold text-sm mb-1">Financial Tools</h4>
-                    <p class="text-xs text-fin-muted">Financial Modeling, DCF Valuation, Ratio Analysis</p>
-                </div>
-                <div class="p-4 border border-white/5 bg-white/5 rounded-lg">
-                    <h4 class="text-white font-bold text-sm mb-1">Technical</h4>
-                    <p class="text-xs text-fin-muted">Adv. Excel, MS Office, AI Tools</p>
-                </div>
-                 <div class="p-4 border border-white/5 bg-white/5 rounded-lg">
-                    <h4 class="text-white font-bold text-sm mb-1">Core Competencies</h4>
-                    <p class="text-xs text-fin-muted">Fin. Reporting, Audit, Team Leadership</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professional Experience Timeline -->
-    <section id="experience" class="py-24 px-4 bg-black/20">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-16">
-                <span class="text-fin-accent font-mono text-sm tracking-widest uppercase mb-2 block">Work History</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Professional Experience</h2>
-            </div>
-
-            <div class="relative space-y-12">
-                <!-- Connector Line -->
-                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-white/10 to-transparent md:-translate-x-1/2"></div>
-
-                <!-- Job 1 -->
-                <div class="relative flex flex-col md:flex-row gap-8 items-start group">
-                    <!-- Date (Left on Desktop) -->
-                    <div class="w-full md:w-1/2 md:text-right pl-20 md:pl-0 md:pr-12">
-                        <div class="inline-block px-3 py-1 rounded border border-white/10 bg-white/5 text-xs font-mono text-fin-muted mb-2">Nov 2021 – Jun 2025</div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Accountant</h3>
-                        <p class="text-fin-accent text-sm mb-4">Sityog Institute of Technology | Aurangabad, Bihar</p>
-                        
-                        <!-- Doc Buttons (Left Aligned for Desktop) -->
-                        <div class="hidden md:flex flex-wrap gap-2 justify-end">
-                            <button onclick="openModal('sityog-appt')" class="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs rounded transition-colors flex items-center gap-1">
-                                <i class="ph ph-file-pdf"></i> Appointment Letter
-                            </button>
-                            <button onclick="openModal('sityog-exp')" class="px-3 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-300 text-xs rounded transition-colors flex items-center gap-1">
-                                <i class="ph ph-certificate"></i> Experience Letter
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Node -->
-                    <div class="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-fin-dark border-2 border-blue-500 z-10 md:-translate-x-1/2 shadow-[0_0_15px_rgba(59,130,246,0.5)] mt-1"></div>
-
-                    <!-- Content (Right on Desktop) -->
-                    <div class="w-full md:w-1/2 pl-20 md:pl-12">
-                        <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all">
-                            <ul class="space-y-3 text-sm text-fin-muted">
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>ERP Implementation:</strong> Spearheaded the end-to-end implementation of the ERP system, collaborating with cross-functional teams to migrate data and streamline internal workflows.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>Financial Management:</strong> Took accountability for daily financial transactions, maintained books, and utilized Tally ERP 9 for reporting.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>Budgeting & Forecasting:</strong> Participated in annual budget planning, variance analysis, and aligning financial strategies with growth objectives.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>Banking Operations:</strong> Managed banking relationships, fund transfers, loan applications, and reconciliations.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>Accreditation Support:</strong> Secured NAAC accreditation by organizing financial documentation and ensuring compliance.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="ph ph-caret-right text-blue-500 mt-0.5"></i>
-                                    <span><strong>Training:</strong> Mentored team members on Tally and Advanced Excel.</span>
-                                </li>
-                            </ul>
-                            
-                             <!-- Doc Buttons (Mobile Only) -->
-                             <div class="flex md:hidden flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
-                                <button onclick="openModal('sityog-appt')" class="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs rounded transition-colors flex items-center gap-1">
-                                    <i class="ph ph-file-pdf"></i> Appointment Letter
-                                </button>
-                                <button onclick="openModal('sityog-exp')" class="px-3 py-1.5 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-300 text-xs rounded transition-colors flex items-center gap-1">
-                                    <i class="ph ph-certificate"></i> Experience Letter
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Live Project -->
-                <div class="relative flex flex-col md:flex-row flex-col-reverse gap-8 items-start group">
-                    <!-- Content (Left on Desktop) -->
-                     <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 md:text-right">
-                        <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all">
-                             <ul class="space-y-3 text-sm text-fin-muted md:justify-end text-left md:text-right">
-                                <li class="flex gap-3 md:flex-row-reverse">
-                                    <i class="ph ph-caret-right text-green-500 mt-0.5 md:rotate-180 flex-shrink-0"></i>
-                                    <span><strong>Financial Reporting:</strong> Managed end-to-end accounting cycle; prepared Trial Balance, P&L, and Balance Sheets.</span>
-                                </li>
-                                <li class="flex gap-3 md:flex-row-reverse">
-                                    <i class="ph ph-caret-right text-green-500 mt-0.5 md:rotate-180 flex-shrink-0"></i>
-                                    <span><strong>VAT Compliance:</strong> Assisted in identifying taxable supplies and expenses; prepared turnover declarations.</span>
-                                </li>
-                                <li class="flex gap-3 md:flex-row-reverse">
-                                    <i class="ph ph-caret-right text-green-500 mt-0.5 md:rotate-180 flex-shrink-0"></i>
-                                    <span><strong>Reconciliation:</strong> Performed bank statement analysis, reconciliation, and vendor invoice management.</span>
-                                </li>
-                            </ul>
-                            
-                            <!-- Doc Buttons (Mobile Only) -->
-                             <div class="flex md:hidden flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
-                                <button onclick="openModal('mh-cert')" class="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs rounded transition-colors flex items-center gap-1">
-                                    <i class="ph ph-certificate"></i> Completion Certificate
-                                </button>
-                                <button onclick="openModal('mh-learnings')" class="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs rounded transition-colors flex items-center gap-1">
-                                    <i class="ph ph-book-open"></i> View Learnings
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Node -->
-                    <div class="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-fin-dark border-2 border-green-500 z-10 md:-translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.5)] mt-1"></div>
-
-                    <!-- Date (Right on Desktop) -->
-                    <div class="w-full md:w-1/2 pl-20 md:pl-12">
-                        <div class="inline-block px-3 py-1 rounded border border-white/10 bg-white/5 text-xs font-mono text-fin-muted mb-2">Sept 2025 – Oct 2025</div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-green-400 transition-colors">Live Project Trainee</h3>
-                        <p class="text-fin-accent text-sm mb-4">MH Solutions | Remote</p>
-
-                         <!-- Doc Buttons (Right Aligned for Desktop) -->
-                         <div class="hidden md:flex flex-wrap gap-2 justify-start">
-                            <button onclick="openModal('mh-cert')" class="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs rounded transition-colors flex items-center gap-1">
-                                <i class="ph ph-certificate"></i> Completion Certificate
-                            </button>
-                             <button onclick="openModal('mh-learnings')" class="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs rounded transition-colors flex items-center gap-1">
-                                <i class="ph ph-book-open"></i> View Learnings
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Projects (Based on Real Experience) -->
-    <section id="projects" class="py-24 px-4 bg-fin-dark">
-        <div class="max-w-6xl mx-auto">
-             <div class="mb-16">
-                <span class="text-fin-accent font-mono text-sm tracking-widest uppercase mb-2 block">Key Initiatives</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Major Projects & Achievements</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="h-40 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-b border-white/5 relative">
-                        <i class="ph ph-laptop text-6xl text-white/10 group-hover:text-blue-500/20 transition-colors"></i>
-                        <div class="absolute top-4 right-4 px-2 py-1 bg-black/40 backdrop-blur rounded text-[10px] text-blue-400 border border-blue-500/20 font-mono">MH SOLUTIONS</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Remote Live Project</h3>
-                        <p class="text-sm text-fin-muted mb-4">Executed comprehensive financial reporting cycle including Trial Balance, P&L and Balance Sheet preparation for MH Solutions.</p>
-                        <div class="flex items-center gap-4 text-xs text-white/60 mb-4">
-                            <span class="flex items-center gap-1"><i class="ph ph-check-circle"></i> VAT Compliance</span>
-                            <span class="flex items-center gap-1"><i class="ph ph-bank"></i> Reconciliation</span>
-                        </div>
-                         <button onclick="openModal('mh-cert')" class="w-full py-2 border border-white/10 rounded hover:bg-white/5 text-xs text-center block text-fin-text transition-colors">View Certificate</button>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="h-40 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-b border-white/5 relative">
-                        <i class="ph ph-database text-6xl text-white/10 group-hover:text-green-500/20 transition-colors"></i>
-                        <div class="absolute top-4 right-4 px-2 py-1 bg-black/40 backdrop-blur rounded text-[10px] text-green-400 border border-green-500/20 font-mono">SITYOG INST.</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">ERP System Implementation</h3>
-                        <p class="text-sm text-fin-muted mb-4">Spearheaded end-to-end ERP migration. Collaborated with cross-functional teams to streamline internal workflows and digitize records.</p>
-                        <div class="flex items-center gap-4 text-xs text-white/60 mb-4">
-                            <span class="flex items-center gap-1"><i class="ph ph-users"></i> Team Lead</span>
-                            <span class="flex items-center gap-1"><i class="ph ph-arrows-left-right"></i> Migration</span>
-                        </div>
-                        <button onclick="openModal('sityog-learnings')" class="w-full py-2 border border-white/10 rounded hover:bg-white/5 text-xs text-center block text-fin-text transition-colors">View Learnings</button>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="glass-card rounded-xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <div class="h-40 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border-b border-white/5 relative">
-                        <i class="ph ph-file-text text-6xl text-white/10 group-hover:text-yellow-500/20 transition-colors"></i>
-                         <div class="absolute top-4 right-4 px-2 py-1 bg-black/40 backdrop-blur rounded text-[10px] text-yellow-400 border border-yellow-500/20 font-mono">COMPLIANCE</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">NAAC Accreditation Drive</h3>
-                        <p class="text-sm text-fin-muted mb-4">Secured accreditation by organizing critical financial documentation and ensuring 100% compliance with audit standards.</p>
-                        <div class="flex items-center gap-4 text-xs text-white/60 mb-4">
-                            <span class="flex items-center gap-1"><i class="ph ph-shield-check"></i> Audit</span>
-                            <span class="flex items-center gap-1"><i class="ph ph-folder"></i> Documentation</span>
-                        </div>
-                        <button onclick="openModal('sityog-naac')" class="w-full py-2 border border-white/10 rounded hover:bg-white/5 text-xs text-center block text-fin-text transition-colors">View Details</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section (Detailed) -->
-    <section id="certifications" class="py-24 px-4 bg-black/20">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-12">
-                <span class="text-fin-accent font-mono text-sm tracking-widest uppercase mb-2 block">Continuous Learning</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Certifications & Training</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Cert 1 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-green-500/20 rounded-lg text-green-400"><i class="ph ph-plant text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Jan 2026</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">ESG & Sustainable Business</h3>
-                    <p class="text-xs text-fin-muted mb-4">Learned frameworks for Environmental, Social, and Governance reporting and sustainable corporate strategies.</p>
-                    <button onclick="openModal('cert-esg')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 2 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-blue-500/20 rounded-lg text-blue-400"><i class="ph ph-users-three text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Nov 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">Outbound Leadership Program</h3>
-                    <p class="text-xs text-fin-muted mb-4">Developed team management, conflict resolution, and strategic decision-making skills in a dynamic environment.</p>
-                    <button onclick="openModal('cert-leadership')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 3 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-red-500/20 rounded-lg text-red-400"><i class="ph ph-shield-warning text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Oct 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">Cybersecurity & Digital Risk</h3>
-                    <p class="text-xs text-fin-muted mb-4">Understanding digital threats to financial data and risk mitigation strategies for corporate assets.</p>
-                    <button onclick="openModal('cert-cyber')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 4 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400"><i class="ph ph-globe text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Sept 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">Humanistic Mgmt (Switzerland)</h3>
-                    <p class="text-xs text-fin-muted mb-4">International perspective on human-centric management practices and organizational ethics.</p>
-                    <button onclick="openModal('cert-human')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                 <!-- Cert 5 -->
-                 <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-yellow-500/20 rounded-lg text-yellow-400"><i class="ph ph-calculator text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Sept 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">Accounting Intelligence</h3>
-                    <p class="text-xs text-fin-muted mb-4">Advanced techniques in automated accounting, financial interpretation, and reporting efficiency.</p>
-                    <button onclick="openModal('cert-account')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 6 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-pink-500/20 rounded-lg text-pink-400"><i class="ph ph-lightbulb text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">July 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">Design Thinking Workshop</h3>
-                    <p class="text-xs text-fin-muted mb-4">Applied creative problem-solving methodologies to innovate business processes.</p>
-                    <button onclick="openModal('cert-design')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                 <!-- Cert 7 -->
-                 <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><i class="ph ph-chart-line-up text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">July 2025</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">HP LIFE: P&L / Cash Flow</h3>
-                    <p class="text-xs text-fin-muted mb-4">Deep dive into Profit & Loss statement analysis and Cash Flow management fundamentals.</p>
-                    <button onclick="openModal('cert-hp')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 8 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-teal-500/20 rounded-lg text-teal-400"><i class="ph ph-robot text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Nov 2024</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">AI Tools & ChatGPT (be10x)</h3>
-                    <p class="text-xs text-fin-muted mb-4">Leveraging AI for productivity, data analysis, and automating routine financial tasks.</p>
-                    <button onclick="openModal('cert-ai')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-
-                <!-- Cert 9 -->
-                <div class="p-6 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-2 bg-gray-500/20 rounded-lg text-gray-400"><i class="ph ph-desktop text-xl"></i></div>
-                        <span class="text-xs font-mono text-fin-muted">Feb 2023</span>
-                    </div>
-                    <h3 class="font-bold text-white mb-2">ADCA (Comp. App)</h3>
-                    <p class="text-xs text-fin-muted mb-4">Advanced Diploma in Computer Applications covering software tools and system management.</p>
-                    <button onclick="openModal('cert-adca')" class="text-xs text-fin-accent hover:text-white flex items-center gap-1"><i class="ph ph-list-magnifying-glass"></i> View Details</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section (Full) -->
-    <section class="py-24 px-4 bg-fin-card/30">
-        <div class="max-w-6xl mx-auto">
-             <div class="mb-12">
-                <span class="text-fin-accent font-mono text-sm tracking-widest uppercase mb-2 block">Academic Background</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Education</h2>
-            </div>
-            
-            <div class="space-y-6">
-                <!-- PGDM -->
-                <div class="glass-card p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 text-xl font-bold">PG</div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-xl font-bold text-white">PGDM</h3>
-                        <p class="text-fin-muted">GL Bajaj Inst. of Mgmt & Research, Gr. Noida</p>
-                        <p class="text-sm text-white/60 mt-1">Key Coursework: Corp. Finance, Fin. Modeling, DCF, Ratio Analysis</p>
-                    </div>
-                    <div class="text-right">
-                         <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-sm rounded border border-blue-500/20">2025 - Ongoing</span>
-                    </div>
-                </div>
-
-                <!-- B.Com -->
-                <div class="glass-card p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 shrink-0 text-xl font-bold">UG</div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-xl font-bold text-white">B.Com. (Hons.)</h3>
-                        <p class="text-fin-muted">Sachchidanand Sinha College</p>
-                    </div>
-                    <div class="text-center md:text-right">
-                         <span class="block px-3 py-1 bg-green-500/10 text-green-400 text-sm rounded border border-green-500/20 mb-1">2020 - 2023</span>
-                         <span class="text-xs text-white/60">Score: 72.12%</span>
-                    </div>
-                </div>
-
-                <!-- 12th -->
-                <div class="glass-card p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0 text-xl font-bold">12</div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-lg font-bold text-white">Intermediate (Class 12)</h3>
-                        <p class="text-fin-muted">BII A Pub Sch (CBSE)</p>
-                    </div>
-                    <div class="text-center md:text-right">
-                         <span class="block px-3 py-1 bg-white/10 text-white text-sm rounded border border-white/20 mb-1">2019 - 2020</span>
-                         <span class="text-xs text-white/60">Score: 67.2%</span>
-                    </div>
-                </div>
-
-                 <!-- 10th -->
-                 <div class="glass-card p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0 text-xl font-bold">10</div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-lg font-bold text-white">Matriculation (Class 10)</h3>
-                        <p class="text-fin-muted">St. Ignatius School (CBSE)</p>
-                    </div>
-                    <div class="text-center md:text-right">
-                         <span class="block px-3 py-1 bg-white/10 text-white text-sm rounded border border-white/20 mb-1">2017 - 2018</span>
-                         <span class="text-xs text-white/60">Score: 75.6%</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12">
-                 <h3 class="text-lg font-bold text-white mb-6">Awards & Academic Achievements</h3>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 bg-white/5 border border-white/10 rounded-lg flex items-center gap-3">
-                        <i class="ph ph-users text-yellow-500 text-xl"></i>
-                        <div>
-                            <p class="text-white font-bold text-sm">Secretary, Analytics Club</p>
-                            <p class="text-xs text-fin-muted">Led activities & events.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-white/5 border border-white/10 rounded-lg flex items-center gap-3">
-                        <i class="ph ph-network text-blue-500 text-xl"></i>
-                        <div>
-                            <p class="text-white font-bold text-sm">Coord., Alumni Relations</p>
-                            <p class="text-xs text-fin-muted">Facilitated networking.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-white/5 border border-white/10 rounded-lg flex items-center gap-3">
-                        <i class="ph ph-student text-green-500 text-xl"></i>
-                        <div>
-                            <p class="text-white font-bold text-sm">Academic Leader</p>
-                            <p class="text-xs text-fin-muted">Liaison between faculty & students.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-white/5 border border-white/10 rounded-lg flex items-center gap-3">
-                        <i class="ph ph-trophy text-purple-500 text-xl"></i>
-                        <div>
-                            <p class="text-white font-bold text-sm">Global Inclusion Summit</p>
-                            <p class="text-xs text-fin-muted">Participant in Awards (New Delhi).</p>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action / Footer -->
-    <section id="contact" class="py-24 px-4 bg-fin-dark relative overflow-hidden border-t border-white/10">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="text-4xl font-bold text-white mb-6">Ready to Drive Financial Growth?</h2>
-            <p class="text-fin-muted mb-12 text-lg">
-                Available for roles in Investment Banking, Financial Analysis, and Strategic Data Planning.
-            </p>
-
-            <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
-                 <a href="mailto:alok09037@gmail.com" class="px-8 py-4 bg-fin-accent hover:bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/25 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
-                    <i class="ph ph-envelope-simple text-xl"></i>
-                    alok09037@gmail.com
-                </a>
-                <a href="tel:+917979709656" class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
-                    <i class="ph ph-phone text-xl"></i>
-                    +91 79797-09656
-                </a>
-                 <a href="www.linkedin.com/in/alokkumar33" target="_blank" class="px-8 py-4 bg-[#0077b5] hover:bg-[#006396] text-white rounded-xl font-bold shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
-                    <i class="ph ph-linkedin-logo text-xl"></i>
-                    LinkedIn
-                </a>
-            </div>
-
-            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-fin-muted gap-4">
-                <p>&copy; <span id="year"></span> Alok Kumar. All Rights Reserved.</p>
-                <p class="italic opacity-50">Disclaimer: Projects shown are for portfolio demonstration purposes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- INFO MODAL -->
-    <div id="info-modal" class="modal fixed inset-0 z-[60] flex items-center justify-center px-4 bg-black/80 backdrop-blur-sm">
-        <div class="bg-fin-card border border-white/10 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative transform transition-all scale-95" id="modal-content-box">
-            
-            <!-- Close Button -->
-            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors">
-                <i class="ph ph-x text-xl"></i>
-            </button>
-
-            <!-- Modal Content -->
-            <div class="p-8">
-                <h3 id="modal-title" class="text-2xl font-bold text-white mb-2">Title Here</h3>
-                <p id="modal-subtitle" class="text-fin-accent font-mono text-sm mb-6">Subtitle / Date</p>
-
-                <!-- Detailed Learnings Section -->
-                <div class="mb-8">
-                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <i class="ph ph-list-checks text-green-400"></i> Key Learnings & Achievements
-                    </h4>
-                    <ul id="modal-learnings" class="space-y-3 text-fin-muted text-sm list-disc pl-5 marker:text-fin-accent">
-                        <!-- JS will populate this -->
-                    </ul>
-                </div>
-
-                <!-- Document/Certificate Preview Section -->
-                <div class="border-t border-white/10 pt-6">
-                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <i class="ph ph-file-text text-blue-400"></i> Document Preview
-                    </h4>
-                    
-                    <div class="bg-black/30 rounded-xl border-2 border-dashed border-white/10 p-8 text-center">
-                        <i class="ph ph-file-pdf text-4xl text-fin-muted mb-3 block mx-auto"></i>
-                        <p class="text-white font-medium mb-1">Document File</p>
-                        <p class="text-xs text-fin-muted mb-4" id="modal-doc-name">Certificate.pdf</p>
-                        
-                        <div class="flex justify-center gap-3">
-                            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs rounded-lg transition-colors">
-                                Preview File
-                            </button>
-                            <button class="px-4 py-2 bg-fin-accent hover:bg-blue-600 text-white text-xs rounded-lg transition-colors flex items-center gap-2">
-                                <i class="ph ph-download-simple"></i> Download
-                            </button>
-                        </div>
-                        <p class="text-[10px] text-white/30 mt-4 italic">
-                            (Note: This is a placeholder. You can link your real PDF here in the code.)
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-fin-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-white/10');
-                navbar.classList.remove('py-4', 'bg-transparent');
-                navbar.classList.add('py-2');
-                navbar.style.top = "0"; // Stick to top, covering ticker
-            } else {
-                navbar.classList.add('py-4', 'bg-transparent');
-                navbar.classList.remove('bg-fin-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-white/10', 'py-2');
-                navbar.style.top = "40px"; // Move down to show ticker
-            }
-        });
-
-        // Mobile Menu
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // --- MODAL LOGIC ---
-        
-        // Data for Modals
-        const modalData = {
-            'sityog-appt': {
-                title: "Appointment Letter - Accountant",
-                subtitle: "Sityog Institute of Technology | Nov 2021",
-                docName: "Appointment_Letter_Sityog.pdf",
-                learnings: [
-                    "Formal validation of role as Accountant managing institutional finances.",
-                    "Defined responsibilities including Tally ERP 9 management and bank reconciliation.",
-                    "Authorized to handle sensitive financial data and reporting."
-                ]
-            },
-            'sityog-exp': {
-                title: "Experience Letter - Accountant",
-                subtitle: "Sityog Institute of Technology | Jun 2025",
-                docName: "Experience_Letter_Sityog.pdf",
-                learnings: [
-                    "Successfully spearheaded end-to-end ERP implementation affecting all departments.",
-                    "Acknowledged for leadership in NAAC accreditation financial documentation.",
-                    "Validated expertise in auditing, team mentoring, and advanced Excel financial modeling."
-                ]
-            },
-            'sityog-learnings': {
-                title: "ERP Implementation Learnings",
-                subtitle: "Project Deep Dive",
-                docName: "ERP_Project_Report.pdf",
-                learnings: [
-                    "Mastered data migration strategies from legacy systems to cloud-based ERP.",
-                    "Learned cross-functional communication to gather requirements from HR, Admin, and Finance.",
-                    "Developed troubleshooting protocols for system errors during the transition phase."
-                ]
-            },
-            'sityog-naac': {
-                title: "NAAC Accreditation Details",
-                subtitle: "Compliance & Audit Project",
-                docName: "NAAC_Compliance_Report.pdf",
-                learnings: [
-                    "Deep understanding of regulatory compliance standards for educational institutions.",
-                    "Organized 5+ years of financial data into audit-ready formats.",
-                    "Coordinated with external auditors to ensure 100% transparency and zero discrepancies."
-                ]
-            },
-            'mh-cert': {
-                title: "Live Project Completion Certificate",
-                subtitle: "MH Solutions | Oct 2025",
-                docName: "MH_Solutions_Certificate.pdf",
-                learnings: [
-                    "Verified completion of 2-month intensive remote financial reporting project.",
-                    "Executed full accounting cycle from journal entries to final Balance Sheet.",
-                    "Demonstrated proficiency in remote work tools and digital accounting software."
-                ]
-            },
-            'mh-learnings': {
-                title: "Live Project Learnings",
-                subtitle: "Financial Reporting & VAT",
-                docName: "MH_Project_Summary.pdf",
-                learnings: [
-                    "Gained practical exposure to VAT regulations and turnover declarations.",
-                    "Enhanced skills in bank statement analysis and identifying reconciliation discrepancies.",
-                    "Learned to prepare professional-grade Trial Balances and P&L statements for corporate clients."
-                ]
-            },
-            'cert-esg': {
-                title: "ESG & Sustainable Business",
-                subtitle: "Certification | Jan 2026",
-                docName: "ESG_Certificate.pdf",
-                learnings: [
-                    "Understood frameworks for Environmental, Social, and Governance (ESG) reporting.",
-                    "Analyzed how sustainability metrics impact corporate financial performance.",
-                    "Learned to integrate green finance principles into traditional business models."
-                ]
-            },
-            'cert-leadership': {
-                title: "Outbound Leadership Program",
-                subtitle: "Certification | Nov 2025",
-                docName: "Leadership_Cert.pdf",
-                learnings: [
-                    "Developed crisis management skills through simulation exercises.",
-                    "Enhanced ability to lead diverse teams and resolve interpersonal conflicts.",
-                    "Learned strategic decision-making techniques under time pressure."
-                ]
-            },
-            'cert-cyber': {
-                title: "Cybersecurity & Digital Risk",
-                subtitle: "Certification | Oct 2025",
-                docName: "Cybersecurity_Cert.pdf",
-                learnings: [
-                    "Identified key digital threats to financial systems including phishing and ransomware.",
-                    "Learned data protection laws (DPDP) and compliance requirements for financial data.",
-                    "Mastered best practices for securing digital ledgers and sensitive client information."
-                ]
-            },
-            'cert-human': {
-                title: "Humanistic Management",
-                subtitle: "Switzerland | Sept 2025",
-                docName: "Humanistic_Mgmt_Cert.pdf",
-                learnings: [
-                    "Explored international perspectives on ethical leadership and CSR.",
-                    "Studied human-centric approaches to organizational management.",
-                    "Analyzed case studies of successful stakeholder management in global firms."
-                ]
-            },
-            'cert-account': {
-                title: "Accounting Intelligence",
-                subtitle: "Certification | Sept 2025",
-                docName: "Accounting_Intel_Cert.pdf",
-                learnings: [
-                    "Learned to leverage automation tools for faster financial reporting.",
-                    "Studied AI-driven error detection in accounting ledgers.",
-                    "Enhanced skills in interpreting complex financial data for business intelligence."
-                ]
-            },
-            'cert-design': {
-                title: "Design Thinking Workshop",
-                subtitle: "Certification | July 2025",
-                docName: "Design_Thinking_Cert.pdf",
-                learnings: [
-                    "Applied empathy mapping to understand stakeholder financial needs.",
-                    "Learned prototyping techniques to create better financial reporting dashboards.",
-                    "Adopted an iterative approach to problem-solving in business processes."
-                ]
-            },
-            'cert-hp': {
-                title: "HP LIFE: P&L / Cash Flow",
-                subtitle: "Certification | July 2025",
-                docName: "HP_LIFE_Cert.pdf",
-                learnings: [
-                    "Deep dive into constructing and analyzing Profit & Loss statements.",
-                    "Mastered cash flow forecasting techniques to ensure liquidity.",
-                    "Learned to identify break-even points and profit margins for small businesses."
-                ]
-            },
-            'cert-ai': {
-                title: "AI Tools & ChatGPT (be10x)",
-                subtitle: "Certification | Nov 2024",
-                docName: "AI_Tools_Cert.pdf",
-                learnings: [
-                    "Mastered prompt engineering for financial analysis and report writing.",
-                    "Learned to use AI for automating Excel formulas and data cleaning.",
-                    "Explored the ethical implications of using AI in financial decision making."
-                ]
-            },
-            'cert-adca': {
-                title: "ADCA (Comp. App)",
-                subtitle: "Diploma | Feb 2023",
-                docName: "ADCA_Diploma.pdf",
-                learnings: [
-                    "Achieved advanced proficiency in MS Office Suite (Excel, Word, PowerPoint).",
-                    "Learned system administration and database management basics.",
-                    "Mastered digital tools essential for modern office productivity."
-                ]
-            }
-        };
-
-        const modal = document.getElementById('info-modal');
-        const modalContentBox = document.getElementById('modal-content-box');
-        const mTitle = document.getElementById('modal-title');
-        const mSubtitle = document.getElementById('modal-subtitle');
-        const mLearnings = document.getElementById('modal-learnings');
-        const mDocName = document.getElementById('modal-doc-name');
-
-        function openModal(id) {
-            const data = modalData[id];
-            if (!data) return;
-
-            // Populate Data
-            mTitle.textContent = data.title;
-            mSubtitle.textContent = data.subtitle;
-            mDocName.textContent = data.docName;
-
-            // Clear and Populate Learnings
-            mLearnings.innerHTML = '';
-            data.learnings.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                mLearnings.appendChild(li);
-            });
-
-            // Show Modal
-            modal.classList.remove('hidden');
-            // Small timeout to allow display:block to apply before adding opacity class for transition
-            setTimeout(() => {
-                modal.classList.add('active');
-                modalContentBox.classList.remove('scale-95');
-                modalContentBox.classList.add('scale-100');
-            }, 10);
-            
-            // Prevent body scroll
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            modalContentBox.classList.remove('scale-100');
-            modalContentBox.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-
-        // Close on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    </script>
-</body>
-</html>
+%PDF-1.7
+%ÌÕÁÔÅØÐÄÆ
+3 0 obj
+<< /Filter /FlateDecode /Length 4834 >>       
+stream
+xÚÕ\ÉŽ#¹½÷Wè š&ƒ;PP*•øf»oŸlØÏÁ¾ø÷MdÉTfÕtcf©”Üc{±0åå_yùãyø)xc!}Z¥¾ü7?˜üË¿Ü¾}ùÃCù
+áƒ—öòíŸ_TnzQQ]‚T"j}ùöóå§)ÕMJã¥´2}ÚëWííKþ&¥{KŸ¯¥…}\ÿöíOmEi’pQFhã€Ï&
+Ppñ!=“‘æ°ZJF‚÷<bš\úÕ©ôÓß==y¤žÞ¯àó³ˆó¥yâ%ˆèœÃ^4åýÅû´yeiž<‡“e$õVFÏßLs÷•~µi^eÎÜ
+îôÔÕ>ùû·~y ydl_×êÒŸ~\¿ªÒlûjS“öj¡lÊ/ÃgÏ×–.·ùs5^žÕ„ºr×{åO÷ZFƒôLgZÞj{¨}ÒÜjßžj£–VBA¸x…µŽN1sö¾çÙ®_Ê~ó¾*¿ÃÛõ«±~±¶¼«ü™©JkÉ'—Ï»Ä5çõäÓ£ÝßÊï +—å÷ÑH%±6}áLgÏé‹ 'T’#â9Uø:ó ´\£Éå´P®Þp_ïß¾üg;šAúËßþòÓßÒƒ¤¿?¥åè.ÿÃ¦?'É
+Â@Lßÿ}ùë—?7)Di ¸Ä$ àÌj­J
+ç÷ä°J˜}2€KS{0\ÀŒOL­‘CQÌ®_!d®1Ã?Ô†&
+K+ã˜|@™at++šÂ¾W!)€úDÝé›å‚ µ öÑº%ÐÏ¶œð®	ñ^þÔiqÚ¦¡TÞ	~+ô»—Å‘æ(ÿ???ç“–ól¤¡ú1l5mâa‹B™F—L	ôWô2Eúž·•Ë{}Ri‘[[wŠ¬*ôóRU
+¶C¿sÍš'£Ox?Å²cb(Z~(™ÈùÜ5œ"¬±´YÖÇ-aùswN´Nê‚ISÝ5vVX¸ì^×ßQg"Í³¾FŠÄïþÝ•Î¶=éºjxáÆ®Ð¿©ìÁ¦Ý ]y"w>f|ŠrÕžÒ¢ÎqˆÔÂÅÈ™Ñ(ÒªÉñ­É±®F_s–`RLíêó€¹EVµmEOYÁF%¼Ù°BÞ–yÎ
+>žÙ²õ1!¬ïÁ
+¶°Cf…ól`]Â?®áDi„]d•Á[µÁ¡?Ë¿%pž
+ðÜN±AK€Å¨ñ
+A”û¸$w¯“.x!/¸²RÑß9t`—ÌáÌ>s `Ñ§"!ˆßIOèŠá2£Tæømã#›´A0ž³Aö&PUùòçÔ.21
+“NõÇà!2é]÷}ªê¼wU‰À#4à»”ÔTûÌ¶qõ”5ŒwÉ1R“þnlÐô7NdwÕPbrÕþ^åL•¾Þå–P¶Wœ©a{ÕáÑAê5@ñÞÐç¶‹ãpw‚¶è²_Øt“{\ù0¤›¦sk‚o<o¤è#S!ÜGPytlåXkÄ_e88£nI :äwÀð­´­bœt¾Ñ½†$ÙÌûœ[tòãûÈ¼ÉòUƒÐôfó­G¯å<ÍËËþ@>)íò P©Ì»s÷•¡1lçc‹%s ˆ Ô|8EòÌ©Ü.­é)*ÿ ªZb‘÷S„•6aÛvÀD.dîªÓÞ»M	ÜuDöüí#º@Ç'5;‹k#—'A¹º;o˜áådÀ¹Jk—imåv_ÁÄj,½*$%=‘çé£dL†¸ý‚úû"Úø¤1»üËG%Iû„_e3£¦©2¢¡K5gñâú:Y— i²Z‘×˜‡™×Ò0G>,âj.;Fv äšs£¯qúµÅŒ$Åª”ËVäÜ”µ\É¶*Aí®nt\[˜C¶½oÞU#©„ŽÌþöBÎù@
+Q@7MÈ}²„nò^
+Œ¤h’´†¹E~jì.hÑ`DpêS e /;\­ÓHî¢Uæê¸}óCH¶õÆô¦Æ$hhûfæ¼Ã¢Ow$¦*¶yÎºÀ„yÏ,pj|JF[¤èÀ¶=]d°ÂÛpr‘ccŒ›‘iªñ ô±&,ÒcðÚýªîØâf1fZúy¼šf›G³·¯’5=¹•¡íùãžá&žömOe<7èO÷b}’!8¹™±ñ{|d=¿e•`…1apÞzÄ©0?ƒQgß38µe~Jð(á;¶:>„ôõ¾3 „üaÎÈüÌ¾PiÇ"ÆƒÓÐ‘õ£‹bókÞ(â™£”i	 PDïí
+…07žÓ‰ðJŠKv3Dt½_Gt)–lñè
+*š*=ñ›(4¸¬ó_u)É•9²¥Ýãã¸'É8-¥FÏØÔ(¶‡×9õ…:7¾tÑñ
+Q¥’ec$„Sá6T	Ê8,%–ò®Fú7n¹u …xaq9Õ“QæÖö{†ÒÉ“UºËÞ[Ù
+jk¤g–B²>Í”V¥Ãç)muúBJ‘9ÕDRáÖZ/í:}
+Yµƒ+hIÜ’—êÎùf{–§	l’„À¿<!ÿBT[Ï0hiÙ„CyôAÛcr±]<TöüWB¸ìf=êœ¾F÷+º¢¿„¾*ˆî
+¢N¹÷d)·’quÕa"ÅXˆßÌ@ÿ“äIÎ°î`G¿3§&TãÿØ„Ä˜¦ÃB
+$S¹3ˆ&Ù“5U·¿7!J¡G‘"cï%“‚X?„@A'3¬ø*õcC@»'‡Òž,N—ÂÓ¨¤¬q6Ã‰8c„Snc
+³Æòâ¢:m¬ñ¯	n¨e…o 	ž“qN§£
+ƒB;L­¿öTzæ‹ZéCçÒ³m¢^Ã•µûÕ†Wik,ÍõÞ‹,t_|ÅfUþ‚¿6|³.© Ö3|SìûZ’˜°Æ_cOžï9•žk7ûÌ.Œ™Íaj®c‹¸Â§).$MÒó¾öet¤:Ê¼=~Ž±"@.Fp=«×ð|\DçE/3tàd¢Ö¤[·i? 4îwƒc7CªªÊ³ö(ÊÝÖtòÄ°Ÿ¿øg
+M²ü@Èª<¦‡9…%A‚®gA{™Ñó¼A‰lšjÊ4±9eµyãV‹2ªõŒ
+{ú¬õã#†¢¤q*ñ •W­r$àToÛ¤c•l(s¶ý³Öc²Æ•Ê:€¹±XJÓ‹¿ž»°ºx#<«„ˆÜ%&YÖ,I<EL£=Jé–½õ$ óJø¢Åá		ìÇ5ãHžô4‹¤h×_Û"’9ð“9¢+¦+‚©ì;bÁO¡…;€Ñë¾ŽyVý
+4&°   ¯Só5ÈOñ Sóææm?Ð†3^„dH?m\×Ø³
+¯“*‰s	"C’ù™7Šgå8'ÞfÞè,5I©©äT+"M•õš‹k,¹.k
+[õxËÛÑäj^={èwîÝ>ç×§›µ&ùÜ	-NsØGÁÙ$™äSMñß}ÄDÐpI‹>ìÅZw÷m”°é§©wr¾¢;0±³8‡YÅ·§I$æw›Å¯õ¡ VLk 6Ûè•¹ g
+°ö¨*Ü4µ¶…ŒUÅù¢>‡Kø,ÕÔ
+&¥ÃÆBRVIªî¼ÔÀ¸—gÊ[3µŒL+7qóÉö‘¸R?ú-í¹(ˆ°W–´Áˆì'Yrê}ºPâ€ád6¸ytu£z¬Îº<Ã`°Šž Œ)\ð¸*Œ€æÈNU„µáYt†éHQ³ÙˆØÊ<ÄØÞ0 ª|–1*Ù­WÒÂ®£”Ù Bx±e··¤e&75[FDm.»fçb2z@
+Wä×R7KÜA§Ö##c¦mQì0­
+"ø,ÓŽ½-[ÛÁ‘'6¥ L¬’µJfsžm*~ëÑ^¥šÈ§1Ö£YàÊÑ¯çÔ%µ>ÀËS«>wSB:—Ü;r?¥¯¸rø '<%ÁoX¸»oGZoíóò)Œ[îct"«s×Ðž"6±£Œa®ž[„ZAr
+B×ÿp“0ÍBÙ/WÊÂtµ°ß½žÏg—U	ê¡’±¸=Å¶ºk
+8£¢«
+F—šAY
+ÊˆuU{D ÏÖÚƒD•‰6û
+óúy>‚ R¹;ºÿNB=kÆPìG `BÂä§UØØûL	¤AŽWwú–Ï×²RÇbŠ(ºqÿ”óédÕ¼®!(>eÉ¾ñp2¨ ½Ú	N ¶ò0›4GØÊS šÂâe˜àÁŽÊÂêYÃTÖn%ìnðòd°é)rôæ¨êó0r¶Ñ««JŽ ¨@µõÐ[ 0M»ñ†×ŠP.¦Þ»×AîÜ‰c]láÿU¨ê@t’åæ5è¢«­Û©m¼NËAP‡Á5j•×MôF
+¬$À×
+ˆØM..åÄFÄÂlj÷DÅÐ=TÝëÆÂåÙé1ÐÑy]äc>“M‘¾9ŽVQ0.–%‘ÚãÇƒR`€ác› tÏæ”±ÇÞ§*ŸaWa¨å"¾ØþPÉ§5ÈÍNöf@—,Jž°†ž{4‘‹õw0V¢Ì~A6¿×;\ë.Žðà[…nˆ’_ qmä%ßjÇóœç=¦‘“·Fk£BWéŠÎÈC’´³'°œöð´Ïý8¬|Ä¸ph4ŸeÜ±7¯èíÅºSbæ(: ±dz™«£AçÊ¡DšêrmWHOÉÆ¯Ë‰©ÕÀ&ø
+wó4ËÍ9XØÖ6ÓR3;Xøó2¾Œ¹ºW¶§sîVwC¹1íç OaòÃÕc‰úSøC‰›q<Ö¥::a£ú$KN½g·­Ko_í'ý•ØtšâæÜymzÊ¨êàa)P½­”+ÏŒ‘³ã{j•4fÒ}8j^«1ãm,ñaŠaaÿÃ0n™å1±«Ûg@Œpº;îÜÜÔÓ} ‚ºWõâ.èm }û;Hé„À¼
+<`µþªÖ’¯gX_IlCÙ ´ùQ©/mœp~VáWGƒA5,/˜Y|:C=ÏÙÞëÐ\}$:Uš¡ªêi@æDEUÛ·¶‰B›œ!·)+EDÛ
+¡R²H¥‹º§œY¡UWw*Åª½\+¾â²eô“ÂœÈá¶9%…†û™»Ä4Ü³å—¼¨Üa!}‡L•Ð‚wa©†eÇ!„Òy`ô	î½úrFe£ß§‹DõJÿ)öW÷ë°ŸÊÕbûEÒ¼´_U0P“ÎÂËu]Q«Ð3Ó3ÎH¥-ñeÅu|Ì-×vü4§lçŽÊ/âË©¢^:GÈ™A;]éãµ¸5mÃ†½«&¾óÒßã›g§ØlZÚ¯ÂfJÝDódKÅ5±Ñ\š¶ìÃ
+ 6§Uª™îk•Øò,n¥–ž3Û>£Ø¿§ÑÕª™Fä•Z{ÞîïX€³"ö›T¥n¦ßÀ!`!
+õìPÏA ¸ã/(fó”-SW9V ¡Èå©¸V,ú†ýó¸-Æðoé0^È0¼–½·Ú)!×µ„\%ävµ›$äi7vÞiiÄ4—›ï×8»,š#…Z¼ê
+û/•>Á;{åà_ .í‡È†ó=ß¶š§ç‹­TÛ}§.¿ñœ?À
+å—eSœ¾¼¶ç… Í«~@²ž»öL­yÑ­¾±èØí€ð€¯¬›–9hmç×i¿ÍV• 4gž‰mÇÍ.Ïæ¿¤Ž¡G×¾V¶ªE·*ƒ“¤Z€’LŒ52 <¹Ú”¯Ô„y'Ù¦"v}MP¹oª)níÚìum=ðe5F5og(‘ÃWœ ™Š ´Ô›÷Á”EÕLvI}\}œj—«œ!¥G…uéÿ
++ÜÇ3?)UÊG‘”6¿bÃß“HÈGÉÐCˆgCÛšBúå6¨ºÆð0½´¿O1%”sóª7¥gMå€z¯ÚÑïeO†ÞÁÙ´!œJ&z2@rêÄ­åí'B|O®g‘˜Êç«Z ½ÊFÃòqš òëÆ+#Ó{Cè1îéóô0F†NZ¼SMâŒê8è¬”è}úm8ºeÉ‹¸;e\èf¥”
+­(ñ$Á›ÍÊ6ÌNŸ<$ÄéÄÉŸ:_éEWÀøfHÍ­7ÁW¼õ¶²ÔþÎÕL7'†ÀÍ ôœãoxþÊ^‡Pãæçˆ1lãÓ´ˆN¸Ñº6ƒJ.>Šg1Cá•ó¼Œg0<ˆÊ“>U­œ!SÐÂoJRé‰£+.ÿÊªvbEº”†~'éH]ªqÁ P,.iáAønh8Ö¢WúxAëÂ³±±$â^ž£Z
+=ß§Bä(<«3œA8©1J¸¡òŸòê'¤b¨K§7†¨¦ïêýóVŒš¨à†«_·Á_{ï9Ãö.ç[Ýplà:wfr|Õl}±D/ëí›Ùá#Ü°í
+8+§´tÝ^—lc‚£=ä×FÕ³Ly_CæŠóaËÛ»§÷®ÐgòÔÿÄ×I
+endstream
+endobj
+16 0 obj
+<< /Filter /FlateDecode /Length 25 >>         
+stream
+xÚc``1°Oþ\½çŸÃ“¯«Ž  +‘ ž
+endstream
+endobj
+17 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 7082 >>       
+stream
+xÚ­z xWÖö!áCŒ Ï$wZ„RÁ”Ð›)Æ¸á*7¹É²-[ÅêõfÙ²lË–›Ü
+Ø0„Zh!!É¦°	©$Ù$»›Ý+ïõ¿ß?²ú¤í÷ÿòóH²FsçžsÞóž÷œQ6q"4s×ÞÈ{·/Ú¶}/3>ëÉÅ›óã3¸	C;ýûgS!Àÿ æ(È&øI†Ÿ3|àeéþŸ	hf£;dâ
+<È¤þ˜aXû>úyÂ¬ à´Ùô»¹ÓCæ>¸?d<
+Âfbb_`ÿš4%ˆýËW_±dÙ²•á¼ì¢\nJj>gÅ²e?x~’³n	gK|B:O—ÎåÄg%r¶,ál_ÂÙÁÐŸr9
+xYœ#I©ñÉ^2'"é ‡Ÿ—”›ÇIÉåñ³ó]Â‰Håæq¼Ütýš›”‘Ÿ—”Èág%&åròS“8›öíàläeås¶q’²ò’8‹s8yIIœÔüüì5K—æóS–ðrS–&ÓßÉ[š1ö¥¼¥óoÜ¹#bñ¶ÍávìÝ°$¿0Ÿ“ÌËå$&åÇs3ò–üÌÄïþÝÁËÍŒÏX›È;’´91)+Ÿ›_„Ñ‚vÓCØll¶[„=†-Æ–`K±åØ
+l¶{{[ƒ=…=‹=‡­ÅÖaáØzl#¶	{Û‚mÅ¶aÛ±]Ønl¶‹Àöaû±H,‹ÇŽ`IX*ÆÅÒ°t,ãaÙX.–`…XVÊ cC?Ö`kQšˆ• Í›pÏ„fÆŸ§NÜ5ÑÊœÎ|‘Õ0éI¯gßóÀ=ïÝ[1yIÈ¤þ)s¦ôN]0µã¾²ûƒïç?°nÚÂio„–…þyúcÓÝì5ìÿ3cÏŒ†ÿ™Y:+|ÖPØsaÿÀÓ	’¸ý ä!ì! #Íœ
+ßÃrØ6uØHù`´Ï)Žt³J¼_ciÔ€CÃÁL·VmeRJ !Ñ‘7cž‰WdkÂ$Z©VˆËM
+
+06NúÚÔÍ„±‚r—Ktj2[_b¯ÅË
+æò:ð:eÂ2–=Ë”Éù{µ@$¢Š”Y9ÙÙcèêèR·žG¢õPÃF™,¸ÞfNõ{$^ÿ#Þ ¯_eø»áv¹ˆR•hU…*°¹¸è@Q(wym©†¼k™ôz#^%rE|Oj¤9‘šˆ¦ yhÑ¼óW/ôŸ¨­&c¹}ÄñÚÞ*+éîrž3àhg›[¶íÙ}D„úVåP
+œPÙM^n8qºŸ¸h[-WRZµ”œ:ÜÄ÷ÂsÞx/½ý‘7N
+F·]l‡[ÚÃeðû|Ñ@Âp÷Z;ªÁmŠº¬ì‚Üü¢J‘[â—ïOß›µ.vããuvT6W»$®|A‘¨P4&­Ñ‰¿t¬áƒÓ 5¡öð~|S$£†EK  £¿þNã)×ÐRÖDœí?y¬=¯)>+¤“ŸÏÂ§¾ šJÖêÉ¸²´ÒÌuˆº\ñÖž=sh»§£°bŠ_žEFEZ¾G¾YWÃ¦Û0
+2úòsvf~||BQ¯ÙÜú¸ÇQZ¦§Ð ¸â…]¾ ÿß?doYì7vŸYå 0Ø{û½ÛøõÝ×Q0@7XÅªHä \/Sr©ŠÒ¨JIDŒô0SËòáøA~È‚óà½pÒßÉø{ñòó šËºuÌN›•òpëÝš=±äôûÑ?=‚ á¬b
+e’vÊd¬ ¯Â6&\Ç:&s59ÕŸ1
+˜|,Nºóh\pa7ûËˆ
+öÇÄÉeà¬c*t:î,ÓkÀœ2f	Ñb\d§ª)Y™\#ÓÈÁ##s˜Š<u¦_Ý¿þ-È‚“á£ð€&¡¥ì'R¥q‰Ã¢sÝÝö®êwHS½So¾9Ð_ç#ÎQO(¦£`Q‡<¾ox±/.ºÃ¾>ü4[gÔ™L¸CL)Àó+™7ã¶¹(e">*E+¾E¸àî×g¾¾A¶
+º^´àåRJ.—S25@»v#NôFbÕÒ—àü«påûÿ"?ºùIß-âëOÎ&¹*¡;(s…ÎXißy!2^‡©aø
+¾a;Uef¡ÔhÊääº=køÑDdF÷Õ£5_w¾B5=E”Ó$V‘±JM’
+ÏjTYª}•ƒq=›h”Ì@³Ñ¼ÇÏ<óõ§žºÔ
+¦ÂëÄ`:Ä¦ÁI‘	¡7àÿLvmI]&7=#-»¦ØÛÞÚækÐ›ìºâZ­MÉäfæW4u¶´·ô
+hmÜ1:LÉ€…ƒlŸ¤%åHn2/Ç]Üè±šÍVP¸úÐžÃ‰
+…V«Õh”³z“ÂL¸áýp*œL{×Eù†ƒ|AÃQï1†Ûý/°á¬çà$4û¿ÀÞe< ÷A.Ì#ŸìdïËFOmXÖí_¹”@ŒŸ€ÿ©q@~ËúÛÕÍˆE~G>£X›ð*”ÓX;ñ›Iÿ¦Á©Óÿ*ø½‚=HÀüÿÎMÛè¼½àûÀ WÓ.‹ IÔIïS©¦Ô* ÑRI^0zhwâN´Œ@3bú
+ØÄü”uÃ"Ì‘S"E©¡3D‹Ê)£Ý¤«630-À¬Œ¢W,ÕªŠ”àùÂÁSÄŸè4Ö2Û­Vª•€³X0¤2ùŠâ©sH­J#Rá%4b+uæ*=¨ƒ»˜JF²XB1{ v
+I v%$ÂG:~;¿åÑSn
+y ¦0ÍNÊ@á£°‡é^¸šF~ðM¨íûäo’¾ÙAïÉõ
+ÙÌzã´µ¢“|µÉöR->Ô·iZ¸mF/o~ì‡ ==Nmpåñ¯Dmf&íÏ´? }ð8íÍd.û 
+âß‚2‹ÊJö3ôªû	‹“rÓÅTHÊXá”Õi¢‹T%y™±n˜„9¥ªBuiÀcã^§sÜeg!©3éMß{½@Öå>O<Áz–çõûi¯ÛlWP¹Ê4R+fþàò@
+Æ{«þì/òÁ%®òåÞ†7o3ü±Ã¡ìèÚÄƒÜx©ä¤–†S8Mbnú>©ÈË¬
+#˜x+¥)Ú–-/Ý—J¨ù”«”ì´|f¼FX^ÄÏ.NŽ=Êï½ÛÂé^p¾Ãü
+«Ê1nèÓ¬¸‚9`·ï (/å‚©:C
+\b·§±ª‹f0¿Éæ…àÍVAÄ>²›¿ºØŸì¿úd\|iF<8	#™òªFyƒ>y§Ê¨±”‘”š’*¼(R°à&˜«I±EEQ¸L­(U“Ï¡sLŒÒ¨ñ2³ÊjÕëíVÐÓ>Ôô"qÑ¸®0­p6w ¹=uOJ$·§þ3-Ù«®j­Áë„Á~Íæ‚gOný > †¡pE`ƒÛä«ñù¿ùK*Ù&Ey Tº–ä)D©Vg0Ö}l('Íõ”ÞTl¬47Ðú£ÔQ’.ç(AZ[©ÓšÂÊ“Š©<B¤¡´"òì™3§®|§ÀúàVÛ¨^)*ó€7¿pcÖæ´­a±+¶¬Ø¼M,á
+dª`‰"³Xˆ«Í¥6S•Óê 6‡Ó|–¨­¦$mäåüd´€©*¥Aˆ;%®V³ç¸4Á‰L­ÙJ™‰ækÎ*Ë|ùüsÇKU#¬`›U)HOQ§ÅÅâ	¹h<ô6–ËFiÜ¤WmÔˆð²Âõª°0MäG‹W^†œKpípùùí<§‰oŸ˜óóâtª˜:ƒÎbø¾^H‰hÜB .JG¨-ùM‚‹Ïßq_:G™k„¬‰ô|lit½jv†YÜT§.Øa²ÙŸF1|ÁëNú‰4OßÌ†üÛ~$öÂ’B%¨çø¢„¡© G9W¢.ôvyšZÈ‚ÕâCJA:7,—!I%2rLFiÐy+šñÚGaQfiRüQá»uëæõ*P£h²Ý¾6@¶¯W6CFUy½e°§‹¸l]¥RkÕ9¦”/ù`;M{i¥,¥„»)³Ãª§ÿ Äýmt)1[¯„0hí"2)A˜oH"¢Ÿ®HÍD½¬
+PÎl³š­W÷8égÕn”oº{
+==}ênÂDëèï¶d%›k°ž	{Y›QÍožôÓ’÷Ù…Š+?T¼R­šf )oÍ>B&Ò5Ö—·Z=¤ûDdœÃ¯%ôlˆˆÍMN¥ÅZÇoË/Š’ÓBsG^‡m‰CTí3{[, ü¥·÷µÂ³}5Ý--Á••mm/Ý¶´ôÝqèÞâRœ¦Qàûºy}ŸwÁG,t–rÆ4¼;Ú¯·S–Q“é‚Nø»™­V£ý5¢ÚN¹mr£ŒLŒW'‰7$ÊÒ1ïh¢ŠG7ph3M&/ÛLð¥T‘Z'uŽxßQu/A—w@ÒŒúæU4ãBßÅÐ·àÝ_qN•¹Îá#+º(}ÕÑö»³luŽ–jü$·-æ±d4¯L\N™*t¦r#h°4þõ<awhròä‚âÃdê’ÜLYAYžàGF†rjý)ì&¾+?ƒËKáy„u¾ö¦NÚöN¾÷Ê§~‰/èï_2†'¯`[&HKVsc£
+q?ä´å¶Rš²AmP‹ðQ <’Ì/Ú³a/‘_yJJž7œ6xå…²Hõú­C±7>ýäÖ	ïõg`i9NT8Æœ@§£ÿî¨Rßƒ¯Ð^`êg1.oøËGÚ¢æï·Ò©3T˜Á íýÝ½„³B™Z ÈÑªÈÇF`–ª3#œà+õf	iÔ78[F³QÀ+æÆœ*í½ýúkïÖÐ–Ã™Ã
+ÉôuÇ/Ý¢«šò'Âlo©`{!»<”ÞÖAÒ[3:ð7žð°oUç•Wƒ-æãC'‡]-5“™JQ^!.¨WW·TíÈmLØuà08´¿¨4Oò•ö¬ßu¿iW¹ÝnF«¥q n
+>+?™{WR*u)PÓçà[rwÖ{ZªA]wåy>uxÖ¸Ü
+×n"-M¬`7£•Äã?•«úû˜6‹ýÂ6ZvR½‚ŒQÇ‰£ñý»„1&±6±<:-±Þ„IL““2Ò
+VJ¼ÃÓŽÝ}…û~âÓ¥ù…9¹ÿ•Ø÷Ë#*&¥,,Á£ÚãÎÔtUÛ€»ÓyÞ€Oý÷cã&ñ;8H¢ûY|U(&Ñ×#Wwø/0ëÕZ]füR70}Ä.ÜzX‘¬
+S‰µÅ2“ÒF¶´Z[;Ô¾ïærrŸ^éqãFÊlt8ËïeêXWG¾béurQi²ÛÌ¤²„þqFÎÿœ:s‹î^uç8=¿;Ö“
+Ï	ðæð¿þ(on<”•
+^–Å5í&""óöÇ“§Ë’¼Gˆ´\AR)L-Ý«ÂEUGkLàšê®&Âe/ËË¥pÔ7
+:%^T!­l5ÕœuÏ 4‡ê-Þ³=]a
+Míå-D‹[]¤ÈT‹ÈmÈôËß7:›N××‡ý>åjßhÐþE3ŽIm•‚Œ4uzZª!ƒPÒ°;´6rPã(âã
+­’î´ÑÄ‘è ¿†é–ku|…Œ…ËNÕš‡(E©éîÍiø/Ã5Ýo¹#1KÌ”¦’¨ÔªŒH¾èºÔã8¦³”ëháã¿5ÿƒ£µìë?“ð¨Øôpª,¹!þÿ5Ü¯Mü–áåMApáÇ~þûŒáAÿv6\º¡‡QJ¥…“=þÍ<ø<S¡ JÀªn6ÚHÔ‚v>÷ôKðÑ×ëá¢Ûp"x÷â{ƒ¯ï¼½
+‘ßWôÑQAÕë¿6±?ßùÚRŠfÒ+Ï_òòº»pœçÁ‡Áºnvj!bÅl‡Ò§Ç©±õïöÔ|Ûs…<×6Ôz”èïHÙX’òùy­p:­‹×Že.(ûQk9þsãÌà”2­F\ö­Û²Y¬ÐJ´B\¥/«¨ï·· tÏ—N,¥äI¢Œ%¤ñ£0Èä±ACÿÀ‰ñÖi¬·å5ÁÎ&xÙ7mxþ‡¡»†E~û½M×Ð$€Îýþ4€•R„>Ð;DèÀ¯è¤‹PÃ„‹YpÝ0`ù¸—-“?z(ˆ$1qtãÆºÇÇwY×Îó× ¼öûàcc8;H
+ÔjØÅþrßÅðýIÉéàli¬“÷ A„˜#‘Ìt™\•H”Ñ-¦R/s
+>CS[;¦ñ.ò0e±9ŽÂ•4'Õ¶wãÃ«ù$š‚žfïË‰Š'øÅŽZYR¯î¤pJg×À Üam©­óÔ†ùZ›,•ÄYÃs¢(XK›ð*,ø·nÄ–žaÀvTÆ6h*
+zÞ‚óðëMþE°Š€Õ¢×›pƒÆ*•"ÎR´m!Xƒ–f¢å(ßaÛ^» ì¬ïßî"Ê) õãE?:Ãð‡ù#ØýêkY¯ƒóùqç…„L¥Pª)µŒ\ï^½
+G³v0‘EA±V«ÄF¥µââ™Þ> çÂ¹…&˜H—È¦¸xü<N/úðð=Œa 4²k
+(@&V@ã:Ê¢bU±L^@µLäb•¨~u`db½€ê™›Äé2U8
+à*¬fB«¢†òÐ{Ý`/ð?éÞ†ñ´šPù§°®Û·3!…› $©ÿK>®¨6û¬à
+¬`Zôýð¾;„¹‰*©%3¥Ê<ñ¨Þh¨óøh9s‹ï^F§~ôÈ£yjŠØ•Ô	nÈñ™Öx"\J®Ntò;áy÷Î‡_5¬çiÕê|@·»j*PqiÝÖÁøñî‹¢b¹V+•è=Ì³iûœÑºMD“Qðì÷3*NIcÖ*ú
+ÂñÇV=¶â¹gÚÿYgò\@gb“"µ¦H¢8&ÝóH)\nRÒñ7Ø, ¾É]o4 o9þžÒGÐs0ÍÓ—xaßÕ“´—¾gžgøËØMÒA-ÈiÈ7ÅØ‚3-)–c¸ÛuóNK§8Õ’åTE7ë…õžÚª®„¾ptOì’ˆg®•¶ÈÁ t@z ÏÊ{
+åìµ
+Á ‰:Jáùf‰"V½kï™#ïÁÅ=pêÀø4ô~ñn7}ñ)×¡íÃï‚µì£y0MÝu81:ÀöW!§º¨ìÓ$ÛÈ(•66påüæÊûÙ´öM
+yzîfð
+£e	x¤…Aö(1Î†
+ÀÚ~vBš™Ò‹âvl"b³:.ýóŒ€÷kÍÝ˜Ó”ˆè¢ØæÏd7Áúrf…”*#µ¬5MjäNô‚ª”ïM”Á zZ˜Ö Ã9§¼5'ªë(µ‹”fI`|–$—,'JG)QTAÈSgCC/ªOVç¸*¡Ñ­Ó•ù™Î…w=¸¿ÃÒl1ØtazK3å&¾èmÊ‘Gke¤V©ÒÈ¥×*7ê«
+`*¼KW†>x€Î¦Wþ	p.Û!¢Ô"­ºT6ðâ÷E’b}Ï˜Ü{2?`}/ÆžbÑUëG=x¶„_¬‰hsÕwõÝE¾ÍZzÆ´_Œ/úü7gá<ûh°¼{¾K^çöÅ îöA¯ÓKÝ¢n¹_	Åwù%0†}-¡?Á
+¾i¿øÑ›ø;;^z=ðg
+·:½·ëDûýŸ®:Q³X!WÈ)B¯¦2“DŒsÓr³ó5uo}òñW'º3wHŸŠû¢öQùD.«XJ‹Çrz[Í¬Š«ÔjJµ r3y$ã@Îaâðþ†7Tä	±×Œ7gå ¨-â-ƒ[?¥£Ïþ ÝóM“Ú½°Í;
+>ÙC¼pþ­´¶Ðÿøájv¹˜RÒ¢B¤[
+¢cöi±vSY±#K'#¤j­VAÝ¾ÙÓì
+†KÞÿú2œ…~uš¿í]í-lz·†tÕKZEc©r`)Ñ•ªq^òœíEêJ÷?ÃpjÏé¼•h
+z~a@Ï?šƒQ¸Äê+ «¼ÚSG´µˆ«H>ýÒG„Á{OÂçtjžË¯Ø.2ü·~sŠ}6Ö„»Kí%é²Œ2
+Xz™Ùò#Ûv U§½gên´FÚêŒŽšßîjs%™òB2Ý'=‹?zSpühWu_;ˆ­ì¶ýdÆM«JmÁð*_Ð¿ïëcå@•¯ŽÌL3d4T¥´i[5<\XV"— tjD¸ÇïÔxôµuaN:'h)*&SÕÉi)†ôQ)J³tù),_O^ù³P¯S¸‰*“Õa!á7þë½WÚ*{ŒaÎžî¨¬¸b½W1ü”ÿöKÙNaAvA®T¯´–º«ãÆ3£MÚ¡<×p¢öjÇÀæùƒnˆ@
+¨¼¼„ŠnÏ<ßQU-×Á»Çhúxö»«_µ\üè
+ÌbGÿÊõÓ£„
+ÒK³vî"¶©/zš-M–F² .cš<önóhÔ„E²,9ˆ@<¦V)çåâ™ 0äŠùD8õjÕ@åPÏ¿H{ƒÑþ‡¶ƒ¦HpÎ¢½m5Ç@Dãy™x«÷úñjÒ÷ZœýíÂ¬1#^¼
+/Ð5Tý½ØVÑy±œÁM&¸%MµÆ
+×u²>È¼^ÕÞÖNÔºe
+
+™+
+
+¿/‰Gãê¢¦É-'ñîdbnÍ½cÛ3VÉ[ž¡“ƒD[eVZ"_A¦¢ ™‹3“‰ìâ
+ŠôZžªÑ1u^® -æ„àèÉ¶îFHtuå'¾}†ÕÒ)¡ÌŸùqZ<«báŸÁ4VH-àÅââ2ž¬CÇ˜G¤1‡‘ÊSÿ;ì?|[ÜVÝahíèÑ´u{‰ììŠf9hÒõFwZœ&‰Ü”ûœð)Ä>«jzÝwf]òï¡‰9À041+@¬0*5†(š¬…¤ŸoË%¤ŠVžF¯×[ÿåÇ³à4xŸûôèøU%Ñj‹ÄàH^Ii!!(qW—îÒâêâ™¸EñØ½›ì¬èsxˆÚ™ÜEúÄM­&7³X¸eÇòUZmZJ07ùð1.±SærÎaõ-ÝD­SÈw“ü*Wi3ñ×—!»eöái´?ï½_¥+Êe¿”ÝBÁ9 r=šŸ( i£ç–áûËÑdúÚûýpÒpöŸ]ðÙwp´}Æ^“uhãz"3ÊýÎ7á±–‹ä‡ý/W4ýùá«Â‘¥h_ §½­qk´vÍ}»aôÆÆß_yñöýÝ/óÚðSgÖ
+xyÝ± 5ËqÉùvõ±à5ýU×ˆò
+Tn
+)×¤‹¹xA¥¤º¦ÙÕ{
+M¦2×¢I2´&>òÓ{$á#÷JvQšâ-aÙ2Ñþ_¾Gß›wìÓãpœé—à›LýCIŒCF9Œs`àG?÷û‰ùaö§À¯wLã{üá˜¯syX`KDÆÒ{¨ÉÞ{¯Löô:Þ¨3vWÙCBzuÕ´ê3éôv½)dÊÿ
+`¥“
+endstream
+endobj
+18 0 obj
+<< /Filter /FlateDecode /Length 597 >>        
+stream
+xÚ}”Koâ0…÷ùž]¤äi—
+!ñ”"
+-4eˆ
+‰8Qüû±}.­T1S‰J÷ásîÅ|Ûîý™¬ÊŸ¶S]}m
+å/6yã
+Ëº¸VJ÷oJI%ïÑî•mÛºØ«ž
+Ù2Óeÿd’3]\®RÝ³'ÍÕ¹ÔŸ)ö6<¨_þvÿûç~ãßìê*×c?ëóKYø-:”ýÅ$ÿ7™ {d®ÉÕve­_Yøùb¥å¢®¬½Î‘D6º‹>•Z¶¤“­j/Œ˜,‹žÈý/*3'[¼¿u½ª2}ª½É„v&ØõíÍi~òFï­Tm©ÏløX¢IÙ_›æ¢¬xÓ)“êd:›ù¼å•b#ë=“&Zö·á³äpk‹‡[ÔRuM^¨6×gåMÌ‚)›¬ÍßÔSZ~‰§eÇSñ'omz87éA„SG
+Gœhé(âŽ¢™(F&Ñ±„žœ=ãˆz.@+Ô% 5ê@qˆX
+Âéœˆ#e±@ŒèçQæD=I§ ‘N"Òò"- „´ŒA¤…“HàÏXq1"èäst&ðž@''"eK)#Â“ä 4@l
+‚NN1¶™B§)p‚(ÅVà6…êþRL0‚ ŽóöÎq^ŠMsœ'ˆÐ3ÆV8Ü¦ØGOAï1ÕÁ{L'À­À69¶’¢§ -Dt:¶)È	8p$ E`G‚~!˜„ érì×\!º+ö2ÙWáãê×¶5÷Ö=îvÚ{Yjõñº4uc«ÜÇ=K÷÷ÑÒûÚû
+öOmÛ
+endstream
+endobj
+22 0 obj
+<< /Filter /FlateDecode /Length 24 >>         
+stream
+xÚc``1°N2NÞr¯ñÑ‘G, #=
+endstream
+endobj
+23 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 4745 >>       
+stream
+xÚX	T×¶­ª«•‘²‰viUkT EIôÅyÄ	q`židF@fh¸ÐÈŒ€"2¨€ 6š
+#!Ñó^0‰¾h4šoLŒ1/ÆSpyYÿ6˜ñåÿ¿Ö‡Euo×=çì}öÙÕ2ÊÔ”’Édª
+ÎK]6lœ¹~Ãí>à×m—iƒ¼
+«%4)yi<%MIü0I0‘Æ˜â—”&W”¦™¸s¼|ÿxÓzEÉ2F_¿
+–ÊIä/+[ådã…/•S(f%£T”šzD=§~–™ÈÌþêÄ9v³gÏ[®
+‰	
+ðó×Ì™={®ñõuÍ2;ƒ‡W 6*,0@ãì­q°Ól°ÓlÔF‘«šiÚ`§¿G¯Fë«qòqÑD„ù„†iüBµ!aÓí4Nþaš(mh †üõ	òñóñÖD{û„jÂý}4«·muÒ¬Ò‡kÖ xù‡ùhlm5š0xxÈ‚Y³Â#üì´¡~³|Éž°YAC›Âfßg»jÓF'Ûõk—¯Ü¸u¥]xt¸ÆWªñö	÷
+³ûC‚¿ü³Ô[ëé³ÖÛ'8< <†"_5žš@M¢^¦fP3)ÊŽšEÙSs¨ùÔj!µˆZL-¥–Q«¨ÕÔÊZGm ©ÍÔVÊ‰ÚF9S.”åNyPž”/åOPû¨j?JERñ&¤îäËŽ²3"`JeÈÙ÷Ã†}aâaò‘épÓ]¦½ô«tµœ’×2ÑÌcÅ:E–âÎð¨á-Ãï@f£Í‚Ì>Uj” GÊGºlù©¹Ö¼wT¾…E EÛhùè€Ñï[î±|Ê²÷¡Ñ¼4w‹ %·(KöPßWVâ—õ™Òu‰q(†‹‰C!‰ÎøŽf—¤Æ¢¬P‚MÌ<u€‹t•³KrÞ)Í¾Ä±ÇÎ5 Ýû‚È„ b­pÆÒpJÞ_¦m»ôMOQ
+Ùuþ.ÒðmHSá9Œ€FÚ\ú8ÍpZe°¼VðgÛ¥žUu,Jâ×e£¢j5ìeî/ÿÛmÁc2gí9Yº¾ºåä
+žÏ)ªÎ=Ã}Üâ÷7!Á
+ðßÜ±É4ýñ§ëvÍ~´ó9/ÊF5ö¹jV ÆöÆ#7a{!oÞo“ Â^±Ùà%‰j°a\úó[ÏÝ;à³vlbßSIP‰ŒÎ?pX©§]™Ú#(©Z°Æ6NÛ=¼’‹Â§)XŸ%«?ñìú@ñÃ—®tª/ûßZ°p’#¹­xsý¼›_&rtU°ešpŸ Íj»Ç›aÄµžŠö^>´õ¶ï#îÎçmwõ‚‹|iúœ´œßžÒ. ¡÷ïåßÃÄSçÇV”P7°Vª&ÎOIåY:QW¸¿ç†úfGõ	ž½¼¤£Ô!XÐ
+$©†9¯àÅ}Ór¡´£õ”P½óƒÉW*Ìûn#²
+È ¥¢%Ì€qÐSX±¯6ª¾\ú<®Œ‡aG¯½CýÐþŸøu~ÀÑ¨»˜r•´rX|ïÁc¯‚ÏUË\×Yóø5(…-r0Ë%Ôá[ªU^+1Åc'h=ðòKÈë´pÒ/Ï3PmÞ7… |~2À¦+– “<røhÇFKÿ†Pp3¾ÆÓ: ÄGóÐÎàÕ)¤ÄÝÈ[ø¦ƒ¹x…fëÄ p0û‡G ð¸• ÚéÇoÝ»1#ŠÛàu¶!R€t¦¡æÍ†÷8°@X¹V0ïû6A”$QÖöRÉ[&}'!ZU•„b¢Ø,OIÁã¶ÛpÛfßX#8w§~}]
+Êêî–
+ü¥‹Ÿ×ÝáîƒÂÏ­æ” 2®NŸS'@sG%ef¦$ók7Ó¶,«ZÆábl‡m°v…iØŽ€#Œ%(séxZ«4¼ÕòIw%Xáá`Å~-%‚BU‡£PVL
+¿3jÖ‘Ã“LnïÎ
+x)ÿí¬tA—N³O“3bãÕžõa§ëOk„5È;­ÂæX†-¿š
+ÎˆyµçyVq¥©¤S¯6‡ÛìI
+ÙËî½	dH2ÕßFÏÝ{}=ÝšüÛZ›šZyl0ýåÚî3{[.4ži!  Qº+Ê)i2Ì4éûþKþØÆc_~`Ã¯DØ(‡äŒ‘°OÀ3­f ì„m¥»`#¿u#Ô©MhÛš¿bÖ
+ÈEø7\t½2X8"Í½VÂV"³)¤1lëïàÆÛ˜·]¥;9üªÍ4¬ÂãÙ€ÍÕ·ªk„»S¶Î?b§×:[ Pöte·Öžµo–4qoµDx×Ð’7ˆ?HqR£°îˆé`ûûbá¤ÊEŽÇDDLÃÎž
+
+]òïŠÜ–	Ðì"_–ì6ßù0GÎ¶ÀÜúUxt¹Ð!‚úß£éß"é÷M’³ÃÌ%CZ+¬j†ùY#I+ó;)@Z…Òb2ÓâÓøíáCÖH3A%
+pU~¬¨Ê¼ïð¶pfÏ¦BW/~SX‰_zb
+‹àõó?•
+ÓSáLù…œC  †ƒá¹ØÜ+‡¤GÒ©áè 8S`^ Lè0ésÖªC“ýš\ß2tž»r¤kDÌAåÛÌãB÷¥Cù-MvŸÁoƒ£`-‡Wj–`³2Á¼~‚è+ÂjQRˆ–Æ.ymPúIŸ¹óž‡Ü¹ØéÝÂlk&»Gð ÷ ¤íå¶Y}¶RpìÉ“Võ'…ºßã¯_ÿ6¿õÿÑ5Î0¿ÇÖûÂwú®N!òÄ{Ú®•`'c.=À»
+`ýäºö,À© ÑØ
+éc"ÊµQM»]=ÂˆlÔxìÎ'´±ÝþšƒÓi¿#qBdxBÀ>µû±€cÑüâÈ$÷õ¦VÃ6žõ„å÷/ÚtðýU
+Bífg4Û!ŒG¥ „¸Ò”ŠJueA1â£Ï´¥¶q`Ûyçƒ–èÆÈc;Pw¸2§4G‘•‘™–¤9S]u¼üCíT{Ð:{{t­­]ûê+´Î Å€Rèë„Çã±oëº†ˆ²Ž$Ô© ÚDê>›€Ú,Bá
+PïÁ“~ÚJÄé#Ê8i^Fžœç$¤÷'•§p!¾ …±0Ø’Œ¾éG2Z[ž!]‚f¸‡›ÿ¼@úýÖdî _Ò‹½}#¬ÄÕPÈ€ÙòÚy6ÎÛ<÷óðaÿ^ƒ/¬veÀR¬Ž&{=0}ØÖ}¶2r	-‘¾åW™b"Ù\h’
+mSÈƒóÀ²¡ i4mŒ
+(ÂÖó„³ÆèÀ8š“Ð>{Ë{0›ƒ	[íVâFi
+Ã^Á+Œátå5¢‹œ™óaiöyN,ÍÊ|G`Çî~P]ôiðòð
+pÛu6Ðp¾ùtoÞG“{Þ¿BÌÍ¶ÁœÉØ¹ä¶Ç¥ˆþÄF¡ìD!NŸ‘›\ŒW€÷Xÿ]XZTð'©Ñ£HŽÕ`Sã¸g×ÕëRò¢vSiiÃÿG}ˆ-h-FºR¢‘Ì{í´>ÆàiéêäX”Èm8W‡tÅÎßÕªoú ,­J9€çàuœ†Tå:OL£]¤jÃ~µt—¬y³1!%Iæt ûÆ1ìGÿÒ(‚Kÿs£½“n5´¸¢½Òg,ÛØÿÞ¯\ÃaLäAš à¬:œ)ÕÒµ	ñ$sn<ô9ë‘•¥Õñl¢.,…pû‰™sÔpµrlbÉ§G÷3ìšL¤´ú¬ì*µt>›Sh659·à@w<¿¼è ÍÒs:{à
+£X
+á·È@îax<H€þ`è"þËË ä¦ßÐÏ˜þ­/ø9bEÝÜ—]Ö Eó_EÌÍu#ÀÕ>.UÈz&ÇK›]¦ªÉÃöî³Ç¢ÿJÕÿe‰&Mò‡(H‡Œ¹û‡Á£Œ§òÿ×©Ñ ý#.ôÉZ ÍÈF2û®ÂCøà‰0'ád¬Á3±7Þž)ä[€iàÆcû2ÕœäuAùU¾+|—qVÔýÃ]ð¼žq¿Gý ðñßX{ÅðO®çjˆó9AtÈ}e¥š(&qÊ¡áTãL¤Ë¬‚—fýˆáóŒÞ[|e
+K`õÏÀŒÇãŠU¯ ‰dÜZ¡g_~¾ X!ëWI ‰¤ƒômpqÈÀ›Æ¸c¤ƒ*6õ^Ì,þ…™ò?‹Ö3ð2˜õÂÛ[­D‹°O’½“ä`‹¯0*vA0 &÷o56èpôÂ*†|áØÙßâ™<k±À‰XCU¼É°5C4¯,GºRá¨%Fª t¨ÿz†]·çÝËè( öO¿qÄ.f«°°bÇZ÷“-!<¤1UG.®s¿¼›“æŽc"ûã¢d0ì©‰4Tåéô	%<~	FùÁ*˜¯†…ç`qfJþHEvvžº$QŸé¼#1‘·¶}ÏÂ[Ô8
+Ì±u§+ŸZðîÖ*.·•ÿþÆÙOMà Ð« ›õv‘ÏOq|'‚K=˜Ÿ–›Q”$w¸€çâMj¼Ð/ÃXÉÇÈÊJWÇ—d»ôVq1ÿý£›0
+¶¼°y/,ÞMÕ_¸93[ê^ÀÖöcîö3UUq9‰áYñIY¼kzP”–Û”Ò}/AH¼‘úö´3Š»Õ·/}¡~†G|Ž7óã~C¶ù{#²O‘®yÙ:Å´Ô%ï;)œÐ¢°5êõhW·?Úv5õ2÷¼âË*_–¬U[2â<¶ Û-åðª~{RÜ
+‘Òb
+XlB$l²´S¦êØÞè¸ÒÝesŸ29Û‹þ©¿Æèéš.¤»$ˆóá
+¦·õÄú&&¦ˆU»5Ehh¨:O8;%Aôj “öâ£vHi·ìy·ž°Ò—à¦jÁ›Jbýëé©Uº«/Öw=…9ç0µ¶˜Õ£ôã\Mö¡jKrVVbïæN·mu(ÞÆáy+§Z/oÙ]˜$\vjLý1¢\W®+Ëx7¡B× ÈÎ¬
+qSG¥ÍÄªMxq1ÌNád¡¼0n?J
+ðZ&%Vòì’‚TX(äåVÕ-W°Inï=HºÌÁ×Àô_¤D~ih6ø5w7[ž»©7Ø×¤Å Qu7Ä”ñ{Îú[©bgÁú¢vu÷×¨
+LsCrxÖ1>û0*ŠýæÙŠMIŠá zçîåØÆ <á±“à¥ˆ¦4áv|Oâõr[áâPú0˜¯HÏÒGE9q0Èüt¸Š¯« ƒ.^B•Ü)˜‡`ª`4bCtî‘ÜL¤ª>OÕÑ¸Ò‘iñqiüÀØŸ§Óiñ(©£ËVË;\–ÇKcû§Óy‡Q"×ÈØê%„|hœy•ÒrU„Ñ¾®‘GàºC&E…wÀš»5Ð‹m	çÚˆur Bº6Â:[©÷Öó±¬ÈØWÄ÷‹°5Êò'îÒfì3iŒR]rÙÁ¬ð‹	ÝŒº«yB½™"ž	[ÖßEže»kòÂ‹a{¿À5r,÷þÍ7ßéå_<©TàÌ¬‘ƒQø‡SàgãcÊ†ß¹…Y¸}Ç¢EU—xV	¶å÷«±–Ý‹z\}ÒÁ/!f‚X‘òHi²(“¾ú$AŠ´\p Ò 
+®Ì‰ÂôŒB!+e¦§‡‚œ±DxjèNQŽGéh¿(¤w\¯2°z@AG$×p5…G
+x~¤çëó¯ræãMß-‰ìS‹²ñ¦
+}£'¸ú¡ýœÛ®AïÎÔ^@‰'¼b`
+^#í¦¿!þÂ:1’»Ö!ýÁõ.sn:ž„ñÿ°™?Ó òsë¸ºC%åy¬’¶“p¶Ó±y‡ê¸ÒÃúbr1Mú)Ÿ¨c½~\ÎÑrBòø=”tßG¿&Âeç’J£äJ!3eéR'âü±X
+ôÛ$gSäŠôî‚kSŒ2óâæaß±(\5×Ñá¾Hïb\…Ù#èýÅå¨„ÄU\‘/U).#ËP)WRŽj‹°†gty~N^‰ˆÆ»R§(;J“?`±„eÄµ¡5"H$ñØë°£;þŒ„Ó€@¿îïóÆ".-
+éS…ŠÂ’#5ê³ÚªÀ@m„Ï¶·<ß½ù~× õ<h%gº,?×ˆÐ ý~"þ¬¦n†0ˆˆß7Æ‡áÕÒt¯N§Ó±Ý·Ìý›
+w‹ëQìI>&%"ÚOí}B{Žgïœ9U{¾Ó­ ÓØ
+OõÂ#„é‹\?ÃO†|XN¾'àÈ?„ü|íÿgü<ØBâ”S'P5ßøïRË„É±Ü*‹Jä¼ƒSÐ,åp¤4	ïÍšsõ9ÙúìüüœÒ›JeG^Ng^©¾ ·8»\9ò¿)÷¬¹
+endstream
+endobj
+24 0 obj
+<< /Filter /FlateDecode /Length 543 >>        
+stream
+xÚ}”Ýkâ@ÅßóWÌ>ö!5Ÿ“¶ˆà'«-*¥¯1suf’øà¿3s®-,²B…_ï™9çÞ™qðëcïOU}$?~ÄŽºúÚäÏ7yã
+‹º¸V¤û-‘"u¯voâ£­‹=õb8_/ÖºìŸŒx­‹ËUÑ]õX4£s©$ÖGôåo>§_›­ÿ{³««\¿ú³ú¢üÀ.9”ýÅHÿ£¦$•„Ûà“Ú®¬õ›Ÿƒ 0ÿXj5¯+ÛXç8œÝãžJ­ZN(Ž6¯FB•EÏä¾‹ÊLÈ.Þßºžªµ>ÕÞx,F;Sìúöæò>y£÷VQ[ê³>
+hûkÓ\È†7™E'³¯™Ë6¯HŒl×keªe{ØþÏ‚Ã­!9µ¨uM^P›ë3ycÓ~0ã•ùL<ÒêŸz’bÙñTüÉ[+gFI8q4w$™Ž"é(Š Œ@1”LSÔbö”LØ3ž‚–P& ” 8D-ÁO2IÔ%f¿Ä~Lìðb PÂ¯ v`‚ƒœ2(ç Ô˜Ø}bw&ÌL.¥”+Ü%&h$ŽGSŠÉ#uŠdr¦È±úKq~üRœƒD·ï‰,{¦8 3§dBGÎ!c œCÆ˜|ÆLpÈ:ã¹HÌÛ\M¾ƒö’Ú—öý ŠkÛš×àž£»õö¾—š¾_lS7v•ûsOýþkcé}åýÌHq
+endstream
+endobj
+28 0 obj
+<< /Filter /FlateDecode /Length 28 >>         
+stream
+xÚc``07ØX9ï]ã‹¯‹0  §TŽ
+endstream
+endobj
+29 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 5758 >>       
+stream
+xÚ­Y	XSgº>1žˆJÑbÓÊ9ö?Ñº`U´êX—Öj-ÅT±–}
+° ’åd	ûÙƒìˆ,âR‹{«Ö­cëR;]ì´;Óvþ“9Ü¹÷DìÔ™g:×;÷†‡$$ù9ÿÿ½ï÷~ï÷……Lœˆ°X¬™ƒ·†l
+X´}ÇnQJ”ð•eK¶dD%ócÜïR³©9¤' f!Ô‹,
+L 6Å›>k`Gwÿ—çz¾'»×sâX8Ý?
+Mú‹
+}AXŽiÌýga·çæÙ,Ôs®ûÄsâ1a!3‘‘o‘1ÊšÊšþ«—_î·lÙÊM¢Ôœ4~Bboù²e+»ï×ðÞôãmŠˆ²Ò|^”0–·Õ·Ã·S”Å¼ÊçùŠ„¼è¸Ä¨äxž(ž·'NKKç%¤‰Ä©é
+ýxÁ‰üt^–(MÀcÓâ’ã¢Òãbybal\/#1Ž²'˜÷¶H˜ÁÛÎ‰¦Çñ–,áñÒãâx‰©k—.Í'ø‰Ò–Æ3ŸI_š<þ¡ô¥îuKÞÜ¼dû–Mþ;÷øûedgðâEi¼Ø¸Œ(~rºß?žñoï¥¥D%oŒEÇm‰fð3ræ†#³9ÈKÈ"d	â‡,E–#+ÕÈZdò²yÙ„¼… ›‘mÈvd ²	Bv!»‘`$Ù‹ìC"H$
+‰Fb‘D„$!$!©H’‰ä°f±(˜Û2d™”‰H9kë½	{&ôNø#;e"o"‰âèyŽf>é’Çkg&oœ|fJÀ”á©íž žñ|ÆøÌ7^ë¼:§ÅMšî5ÝïÙÉÏª¼C¼/Ì=ç÷\3wÇóSžï~aå
+­3“}¼}Ò|ÊÇ|¼nN¸ßIÈbq=Ãvm®æ–ÉÉ¼PµµQ"]Ô¡Õòð<•Bª$èûcw"ßˆT%j|¤Zm‰©uEvÐÐbht¶©[qSYc—“r¡Ô%èX‰©´¤
+\ƒÞ(ÌæØéµhVza¤´Ì.,%
+ «×ÐÝÑ©nÇÍ¥d5A¿‹¹t î„Ÿ ^R µÄÁúî2›rÀ—¸69©(ÔjÅJ°G’½$›Ê-d¥¥™¸Pc9©7au¹&™@Á/Ö‚þlA¥ §Ùôz1=Õ ÿÍÎ£uÇz‰ýö®Ì¼«®ÁYATw—ž%1: ›+ïXŒŸiqÂÉÕGˆs
+ƒ#}øÑ†Ð(R«Ð(	¯&@8`“åÂ>g»Ö@÷îæÁM% z5ÝøìcìZÐEšè‹œ<)s2+Yãl"sÕ¤F%!h|¬åË•ò üÑ›%d%ïrà8	NúH†¸«ÖÏ£9€žÉ9
+hg‰…<ŒÃ)œ{¶€db}ƒûòº—è	€žÎI&
+³Á¦3Wa;
+7p¾6ÿæ áEÇ=
+Œ?Â‚“Þ‡©²©ØÃýsà±À8~¦€®ÂÃ¨Î ·‘X‰Ò WË´Z5ð•£…Z©6“ÚÈòa½B¦VKHà;F Zµ,:{õHÀu8N†/Ã€žFoæ¦FúïÃÓ’ên-éhÂROê+j=z[ºÛ»ñÛnAT*=U¸m|C°ûö€ƒ'\…Q÷ÙTâ\“Ü.Wiµ29X²q¹*I=Ùôcã0q©s¤c ·h¢+ˆ0%Ibyö¼CMõŽîc‘]Ûèé4—žCÏ÷=³åsøÜÝ?T /ú¯ô†Lò
+¢Í†CÜÃ’FALZ¢PpHVW[i7š@þú°m b<
+Î¨0µAa©†Óà3p*ðúŒtºX›ï²]•ÔV.|iíi. /=-xg9pÜùPL¬îæ	éÀU
+ÀîýoE­Ãç>ÔÚQbÑÆ¿å|z;œ~ðú(„áuÛ¯òºÂ\OÀ—¨ËO	Û.º uæ§6E=å7gr“å;×ýÊ[iEÕ„-Ï&ÌÆÔZ•F	ÆÁLuÀušœ+°¸ûŸ¢¹UúQO·mÀÒDôpZ?4Ô·ÛÈKl0¾gÛú¥ù´ÿ+Ã«¾Ç/Z¹³é5dÈäÀÕý2ØðÞC©|ÂKÜìšÖÀúväÂ{pý™Š6Uc¹mEmYM@i‰mÏ¨õø~xôƒØ­mGüé	
+æ.H(Ù
+€Y®ÓÄxÐë_Ë^Ž½zuï}è
+=Üé*à7Ü9ô³J@jH…¼qÍ©9ê±n~ðñÉž¤]`ãØsÜu+Ö-ÝÑñú™Ï¿wÞFÄ‡²Ã1f?Ðã3¸ÛÁ-g‹ZMÃjîíˆ[+ßÎÆƒA¸5Øõ:#
+¤M
+5‡4µ8œðùÝ
+‹R¯V«´šb"+<\‹GÄÚ*…„A©Ò«pFR¤jâ
+ú}&×´2“Y4f‹Þ`±€³Çß+iÁûjC‚…s2cˆµAâx<agí·ZBkÐ“&¼½¦åPmAyF¨2Hðfÿ–Ïàsƒ8\Lxý(vB‰“šçdÁ—°]%°ŒkU™Š@2_-ˆ7Dâò2Kj'++§¬J«-#êÔV­S‘¹ˆ—k¤)"ØÈàÂ8|ñš Ïh=\ñ)d_]þjðcü§ÎE+‰ƒÅ5&³‘&»AWeç 
+Õuf#Fjm2@*È")Ø¾½¹«2§£i-¦
+éßü0Îùêú`W
+‘^âH°ã½Ùn †áôYo;Š—ÙñgˆFG9à6 5Ç­LzLÙÎ…,j+j¬ õÆGâ^˜!ª@‹$µ9§'Ò“h_zöª¡€›ÇûûJK‰ÌW
+Ã”™"¾Ï˜2/H&í©D­µ´®
+++ª9˜“,‰éÊ¹÷ã­nÕ€<ÊèþÎ×ƒñÍ-ûp+œ\7Dœj8:ÐƒŸ-yUN¨%èÙzÿtõ¹_òµ€Ôä«@ª<uá.<S[QÞ`k´Öµ'ûàÄQìN°cÿæÄÄ”dp<eþÒ¾cP­F+%1iI~M]Y•Ý úáF“Ã\grø”têôÕmmµý®âGõá™;"è©’¢€¯.ÊÄ"š†¿n‡
+ML®vŽkÛûT~YÃ-•“Y;H‹$-Æ
+ qª
+m³šK®àu6²¦TFªˆ˜(utt¤!W’9²¶½…Ñ>MVMÐ³ÆúÐ$y‘|3žYDæH-
+Ñ{ÄÐ××¯îÅ-L™g ûë£ýô“7|îôÐ{3>†÷þ.DByê¢]¸\¢kj,;\ÖE\„o ¶½µ{/®!~	Ÿ^XìfS™N_n‡K¿ÅíöâŒt©P‘M¤¬Ž÷E%q*i[}âáaø²Ìà5Q‰Üº|GŠ@,Wf¶´µ9Û˜“Ï;.}GIœ¬‡b»&¸VpÝ1 I	j~øC^TøX½K9UvRSM8îç»¹¯’ Úc,Ý½Û?Nlè“Z½ž´àÝŽö†Æ¬²Lu¹>àTÌÅ‡_ÝüÒAÀÉT2Úl±X ð
+ûxÞRpG!ñL<ËD!=˜û55…ßXYŽ
+¥ôïñÝK/P<:*©«4ƒ
+
+½çOà
+zqNž:[•G,ã¢Jm2ýÌ›xq.iË!:ìºNòk³„¹‰áÇ%w¯Ü¼YÃâ.¿rþ¨qàÏSgØ®‰PË--$Õ…Zu¶,DÒô2|í“¥iÕÇ”&³íSÜæŽGM©”áBøõ»ÑQ†\Yð4uÚÀqètUfâ ^c¯H.îÖÃ³lxø1	Š•d1#Ši¨nv”èß+mô³cjT«*ÎÊÇövÆw×65”ªŽò‹Ì
+.÷ˆ®îôtÝ}šô¼·«ö€XDD
+¸"­	Ç÷'½Ë'Ž)ø­‘xBVFJ‘S°“ÄÆy©s˜ÀÕêšcN¼‘JÇÁÚ@ŸD5Jm±“ZókK«,5Ð
+W>ÎÕ²c¤¾´Îc¤¥ô
+>HîËOU5EÄVºì³è×üÆc˜]N¶ëk×òÇŸ¤ø†d¼˜ÁMZ¢-!Nh¬Y™X‘F¡‘zÂØ6:ªB+•Z]&N?û7›c9EÊIR­–ôÌ±&Ip|Á»¹T›SdV[ˆÖvƒ³­Cí|dÍKºBb·^ÓXH³±@.U
+cÑ|“NSŽÛºyÔ¹Ê‹§
+-:C©®ŠðâãC=Â‡ºû´ò¹æÀìðÿˆÉqRWÕâQ_>póÖ¿ÔOqs×'¿wPsXpÍ5h¼Ä¦F¨|n	ÑÏÓ/Ð3êÞ@O„“Îír‚ƒ³Ó#öxÌ|'t .â[Z
+ˆa£¡×„•Ë«òs„	{ SÏÿþÞ§?ÀÙåÐÿ(¶õ<wS$-£_|‹¼^ÞÝ
+ñæà(í¿ü~¼òHÂë;q£k5s}ß/¨¸ûlW
+Ä…«ç}K{ÓQt³.Ÿ^ô gÁ0Š¡¬:Â]‘@ûì]höÖåAðe{îÀ©ƒåwzO~yýþÛk4öØ|>²ä¥WÙ”:¹ß]Yù³¿ž{aÇ]8r™ÆdðïáFŠç
+A°p_ø~<6Þym¤²ÛNçº†[{ðcÍA„CÆiŒ/ú
+Shdds
+ruºBlPêÊ1³¾DgOdºUiT*µÚüB°~®¿B¨ö(f²=cú@cÅ1sÇ §Œ	Q\.{—srÝ$µ“F¢ÀÐtP}ôç’³×	³*it,ý‘	|!-/Mû)£$ó"‚æŒ…Ë“åêX­»8(LÅ¢©ÅÐÜÖîæ|Ù£ú(ÙGšmfK£±’è„óÑ\KCô	²àTè
+OtE»d÷­æ˜VbîBÛ­ço¿÷÷Q“ù—ü,\<Â†õ´‚K’F…
+„Ü‘ß¿ŠÁYg¨IP#Ay¹NgÀ,*ƒRJOZKÏYÉ¤/½%™æaA%Û«ÃÀæ†þ]å¸Ùh4?ùOï°)o*Œ{¦èBÎø0-rT‚+U*%Iª,2âÔë*Œž46‰VÐ‘@"aäSÕf;œô)œó À	p‹ÿcŠù¨­b±aÚ®#¯N$HJI:XÛØî<Ü
+¼ÎŠL+|ÒO8½©ÈjÿbF•+á+.ã`
+
+´Å…j°'7EŒ§¨›Ú
+õ†FÂpÈt´;xd_5€s:/?¸ŽÝ~ã
+ý, «~­áš‘øD©±“¢»×ÐÝÓ§îÁ-Œ•)È¬]¤µÄÈ¸Ârâ¬D!Â9r"o“D]$ÙCH¨$ÙØŒ¾çîµþd‹©x®Rå„)aø|³ÆÒjÕ[ô>zKYƒ_üŽ\Â„“´eÂ/nW0ÌZxMI¨iÜ[íIo'„‰óÀIilMÒ¿%F­–«\‚¨A7 ¹Ÿá¦fRRK$JÕ‚b¬ $»±ÚYÞ¼xb§kY3
+¾sF0Þ·q[} Û@š³Ð°¸9Û”\R¬÷àWä¶õaw>þÝý‡Íj*1ÐJÐ_,ù	ó„%/Öj¥E |úaì[º,œ!,‹ùêØ;šJ˜Õe…ê˜dæ‰|«º*ÇÃ.±‹°e¯/X¾aCç‡LM;Ð™Q{©,Ô¸;”ŽC5
+­Z)M*³E§·Y½´±ÍVæÒu1ŸÉoÈfºo75¥Ž÷?~—GÁñ;
+½ßgS/ÂW¸^¯Ž."s‚µ«¯»üIS—,Ö*yª“šsë«Kû £{¶Ð“£…®¿$iV‚£²Y&H]7W¼Ët<7‘GI¬¦ ,3C”¾s4á#ør7ô^ÚLjÐ1t•çRb¶
+uÍuWe±ŠT«@~‹Õíj¢[¥jÆS÷Ëƒw‡F˜æ
+³ÉÈb©V+Q€Et$ªdì±•ñÎ:…‘±y7¿ªëÄkL
+Q!¬¬,®Â++Œ–rb>½V«IÚâ±ŒÞšÍSaâjiUOI[»8¡ç8cN?'^iî÷()#$æ5D:)šiÑ6¹¦ºÇ)ÜVÀ FšŒXi#¢c6N–šÌQAt ÊtÓ”’£‘4€^¯ÓÙ=àì¡æ:ÈÅÛ9‡H•B¡)Ò(	kG‹Šd+ð¼qñ,%MÄñ“†ã'N©ã%¥d­]Fæùœ¼d½ŠåL-gR@ŒêpçƒUç£·6‘Uø‡$;I”©{nªë
+ÕÆgÁT'eTg*cõ¨ŸG¤6GÞÉ‰Ù°O%*ÇGs7àzÜ`2g#Öqº ï³º4Y&C«Xzºj|Ën[ù	gÝË8>Už
+;sâ?Ž—f ¼æ<ÏtcoøNë1F‡®^sœ‘+¥2`·FuýðCÇè—·°û[½NO?gUb°«k°c¤Fê,T+Õ:A	H«$ã
+DÂ,eMõí/~Û5œ³)OF Ñk@gÆ(’[Df2ÈWÍœšQÍÚœ"ßÐ@‚/z7-
+k½¡!úUe]X¥´2cŸ&0'`8Ð=oðþz2»¼jqÀR ìah¿¦z:àK±§ôêÏsž<ˆ–ÄnÞŒ‹b­Æ<Âš[’ŒK‹4Z
+1òÙõ>gµ ô{ðåyÈÅà¤×O½Nû®¡Ã·f™# nžÝÕEî“0º®Ó s¡± ÆÏÞY(35_º	ƒ WßPêjzÞÊW}ƒ@xjTzT¨‡ÿ«Ò·ÆÕªT¯gÚÊfkug+ÞÖœ•Û@ä4:Å½8œ4ß´3I;ó±CXz®â4›ý—S×k°Õ›u&f—Wd¥(„r
+x“(Î!5E>¢laJ^tôð¹Ã_4\&¬u¦òl$Éé—Hû*iúœÖ¦oÜMŸú`º,UKô?¸1[9*<u²½µµ„T÷+kþnzåuC›éZÅdPœkÛE¹VrI]
+ÒSÕi)I!Î¤n¶ÔJZµD¥¶^‘ŽH³T
+@ËÚGÕ¡­'u¶òñ†G
+âcÔqüDCÒ#ã\Èt#ú¢4=qvlÍÖëŠ+ñR“®ÚNÀßSõ~Øaï2øXuÌZìç‰+
+.;W~Nþ›’QžÜŽB§0#-#£À¢0+@ýAƒ  ô¤éÈáÑ¶ M×€©Ò\ñTH^•x [vQx¾6ÿ³x?¾æ+çÊNß? 7ýŽíÚñ+WÌÉ¡bAô»xX^ß‘]½ý(q¾†š¶^ã#È„ŠT²Ýt6ªi3%˜4yõ^òFÙ©ÆÎ;ÀRczº}†Ñ³Èƒ©ßÊoL ¢¶uÞÖQv¼•ˆ¯èM=ƒŸ=Ò÷Q+Ñz¹ údâ¶Í=âÙà>‡÷÷§I†f3¾¥V¨¹ßQ Õ™õÿ@¦!T¨ˆ	ú¿ÑhÐY_Vè5q#Âðw$Ý&R§·è§©´©«Ë³ç€¦ÂXåžÐ>þ{?|ù§ïFj\3™8O¾/gS©p5·ïën¸üS¬·>Os7­;@sÁ~¿HzÓr,™¤	ˆ}ð°Î»má‡í
+Å‘µ¿½sw\#nvr´ã})Û6úÓ‘‹	/hu°¾¦ÂÙÔ0¬áºEŒ-æäËH)ÓøVÔbN…dÒÑý%ßt
+÷œÿ"‚ ¯¹¿­óñ;¨Mv˜®¯tpÀÖàä¥ž“IÏ©Ž)§§:LÕg~zªŒfOÏî*æ¹E_®3ÕPužÏPÖç\¯pÿxŽ¹
+endstream
+endobj
+30 0 obj
+<< /Filter /FlateDecode /Length 562 >>        
+stream
+xÚ}”KÚ0…÷ùî‰YdpâÄ™Ž J5/­º
+±¡‘À‰’°àß×ö¹ÌHU)H÷qÎ½Ž3úò¾	çªÙéPÜs¶Ö}sî*æ/eŒF‹¦:Ÿ´^µVZ]£ý#{ïšj£ 6Î‹EaêáÎ&¦:ž•¾fý;éIjó™âtØx«…óí÷ù·ðùeÝœJñ°Êc]…ÜUmëáh³ÿŸÈl”Ýˆ2ßæ§îúº1,ºçœÛ?–FåÍÉMØ rÉ&WßûÚ¨Ž¬²3D1Su5ùßêdWåŠ7—~Ð§Âì›`:e“µ
+öCwñ®ï‚É[§tW›ßðhs6ç¶=jç‡ñ`6cJïmk»£×ò¤ÙÄ_(­‡Ë­=|Öl/­f±ç†«Fé¾-+Ý•æ ƒ©]Ÿ±éÊ~f6ê¯x’¡l·¯~—Kžl:çI4ó”{’ 8F,	ÄˆP'há)ÎAKÔ% 2A=e
+BOñ z QlŽ.ˆôˆ¨'ê¬yŸùD
+DPHæ 1¢1¸N .‰HoÂ^’%ÓJ"L+ —rd®@p&‰àL`»)¼d”bƒ˜(• ê	g1ôRÌžâ$ô2"è¥8	½Œz”è™âTì²|&6/¨›¤€Ù3œ‘$/ÒSF^ˆHz&Ê0Q=ágüSóHøG–žM÷ðº{øqWªs×Ù‹â/«¿
+îÔFÜç¶i]•ÿúÁõ¥äèmü~™Q‚
+endstream
+endobj
+34 0 obj
+<< /Filter /FlateDecode /Length 28 >>         
+stream
+xÚc``1°OÞøzßÿ‰ï¾¾šÂ Œ xë;
+endstream
+endobj
+35 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 6875 >>       
+stream
+xÚZ	X×Úž’Áª¨Œ±:£3ÑZëR÷ÝjUê¾á®È@{ØD ,$'	û¾Ââ€l‚Š
+î»´ê­­ÚŠÕ¢ööº´¶öL<Üûü\ê½mï'ðÌç|ëû~ïI˜µ5&†­Z¹iëúUÖ¬Ýà8uÊÄ2Ÿp¹{¨åæ2n$7
+ô£¹á7BÀÑV#ä¤ÖhL?áþ~Ö=öèÀp‘æ%À0AÑ þÕjÔ èÜoÿ—´¤ßhË²ß‡˜&À†a4öû— ôØ	È¿ÚvÚ¤)Sf|ºËÇW!6eÊô-¯s¥ö“¤«Ü=ýƒ"ÃüwIÝ½¤«&I×N’®
+Šä¯î’Ž
+”zÈ|ÝåÞÒ o©£l«4<L&õ	
+7Iêè»+Lê/å‡Êä2÷0™—4<ÐK*UøÊ¤Ë69J—*¤kvyÊÃdÒ‰¥Ò0™Lê«PÏ›<Yî3)(Ôg²7ÿLØdù«‡Â&[þoâ2‡uŽ×¬üléºMK')¢Rï P©—Lá¾K6éN¾½°.(4À]¾Ø+ÈC¶ÒK¨Ø¥ˆÆø/
+ŽÀFa`ã±	ØÇØDl6›ŠMÃfa³±9Ø<ìl!¶[ŒÙcK°eØrl¶
+[­ÁÖbë°õØl#¶	sÄœ°ÍØl+¶sÅÜ0wÌóÂd˜7æ‹íÂü0, 
+Â‚±,S`XƒÅbç…|²ø¯EØ"KÚ¬±H>ew¬¼­~î>±k-¢Dé¢ßÄAâx‰ÍÄ>TŸì>{ûÀ÷Ö¿·¿ï†¾}õ‹é?¦¥í0ÛæV< °éÑ v£íìíö>ÄµÁ)’)’œ!#†lråýï734u(&#ò"•:|Èpÿö#nŒ€°ÞÖœX¸åvF
+ÌîCØhÜ!6³^É ¹Y$ÊOÑdÆP1jUl
+ƒ<{~ŒÞê¹ÇI;LŽÿl€¸ZÄâÛBMU]ŽNÏ´Ã÷EˆO ‰"]ª^•JlÁ´74^Í³%(\­á-‘-§Vw³°èÁ£]ÝMèyõKÇEvKN‡nÂ7„ª”~©‡ÒièŒ·Ÿ&ºÅk[Ñjî2ç•e»«jJÊªòRêwê˜†ê£¹uÔÑ3^Óo|«z©zM€Í¢]¡[\IB9ïqè¥Îöý‡KiÂÞ3­Úý0U~¡à[}Ò!!t¶Ëe»GÃ±Sm]pnmk.
+ga{
+7Â"£][Wó¥tÓ¯&xÉD<=aöçFKX|¼Z¤œ­Ó 3r¼Ýš’¬U3Žã]–»mŽ+D8Ââ6'Ïñu'ÙÓµdíbÇ‘îŸ5L£§Œ¹ì	v"gÜYóô»s ê›h‡«çbŽP__:sOÏ„Šç«Wû¹PN[:šý™öû¿h¿ÝÒYÞÐ­³é±‚ë%Ä]åÊy3ÂBèàoÔgYòîþº†ó`$ +{ò$W¯M¢æ(Ÿüv_ãÉãŒÑ¹0àÀÚÒ Æ-MÞ6¶æ­|b;°…µƒL<ûØþqÈÌÀÕ’ûs¿BÂ<úqéÕË7Èû“ï !t•¼R|S¯ôaz*qòS:LÎ
+
+8ìA÷ß4Þ•¬Þ>	iô!ÔŠëõ™‡i8PLÜ|Ü0k3S‰º$K¶ÌM£AbgMf=«àzœ°~Ú6icËP/´ÁsFèÝf÷¢seÔw‡¹(—@bÜS$^àæCÃk8­ÉñkYÉÛ™žLxãE‘¢°mÛ
+öýå	”0stoC 
+-ù9Q„·‹OeS[%$ôÀK.·ˆ>Ýr*«’:Ô"«dª<=H[³w8kžÈ
+N?ç‚÷
+Ía¬$ dÆ)*AK£’¤s‘€Z‡¶îƒð8Ü²ïtOAcÊ˜X=PPEÀPÎÀ¼d*SSA|½m±¨Ñ{ë±	r@3Ñtä†<á,4®ƒ³Ÿ@ÚðN¯Wš`ý£&“`_ÜòHÈM‡}%9	@¨IUièI«â½©ÍÓÀ™pö¶Ù—´>
+Œ‡ZG†”DÖT•ïýbaË§hÐd„¡hðÓ±Ð’u°_m
+Yð½Ü{!„Žœ­¤6¬200,,0°2¬¶¶²²–F·¬ÿpÿ/´(:½À•F!tÕI.‡µzúF ‡„ 7dääÒúùAë\mT*­6•LNOMÏ»}â|ƒ¤Ö,`¾wôŒ{&4oÝ¸Qp*ZøçÅc%†ó!
+ÇÂõÌGC0ÊÁg;¹qÃjÌ«ášñÞ2z&¾x5|I s`}öÌdoµ(ÙÓ,<Å×
++o³ããWÚIÈ¸Ê!,¾4)ó(Ãý‚Eï”
+’ãnUNzoÔ8$AÄ“±P|ùÐ¾:³'A‰u4Ð(wÓDËŽ —p7ÊÅ§ª9Œ	iUŸi%›ôçkÑlysýIª¡m
+Ëäîšh¾dðÝsž½ÇÂÙ¼ßÃ»ávœ`2˜„f)Ì•„ŠÑ¤P…=ZD¡a¯+¾ìþ8×c‚%¡â™Jùxz*L~Ý(1œXíˆ˜"Æ$‚á¢žóoVþ6`7Ä¯Š& Ú5]0±óuÕ$éS5ª$
+=Úw*H ¶yîmR0G@g#	ëÄF(êô
+B6“Gó¯ä¯ã!mAa)³“ 1—q×´zžƒ(/ÆÖ<’wí0
+Ûy`ÞíÙ}»;Ô?0MÜoÜI¯}í´OLè
+·@
+Õú¨Ö'6~ò¨½‡ÿ#çç³ü&Ð3a†˜÷Ê÷~b8Þ´	ÑEŒ-< XNÄÂw³ŒhÝùè¾šÍ$MÞõ›—ÎÚ<’Fø|ùmtwQ‚<w@±A´ÿ0PïgØ|±&·‘_A1‹ú@üû#G
+Ar!ŸJ*Š"«k
+Ë*iž]Âk Õ“	]p›¾ßµôIPM„ÑiwìiD÷¬§PÒMÈ9ÁØwî3„íp‹ñõ¡áœ°)W•Õ'×QpÀµ‡ùêôd†èƒ5HQÓ‰‘Û#WP„æ¹3³Ü™I2¤@Íc@RƒŽâÑ © SoÈH£‹r›N~K7íŒÎbŠ¼õ^ÛH_àæN{…y‡ì¤ì7ž8·›!-ÒÚ\ª¾ØTY¹Ûäë›¼“!Ê‡Î¼:žgH›Ÿÿ	¾éªxVŠe¹{qkV·ÐSx&B¶j‘ç,`ðaäuøƒÒ›Y#kD$­BÛzl[ýùßNE•ÑÿÀêüNŽ¥Ð:4
+MCîÈÎ@ÓáÆ/¿©:·	Ïßï™Keƒ¬BÚã-iéW,qEpãÙCETÄWØÁé_þ{°PIàJ.š+)Ž¯óŠtUy¸ÓRÖ»»Â©IË–}êj”™"˜¸=Ñ~¾¤<_ÆFÒ»ýÝ<ÉÏž:B[øÞ/·b;¶ÖÐ5›7€uT¨Ð%3þil™*ŠËè –Vu)õÃÕ«7›bšB+˜}é%ñ¾dƒ–V¦¦(ãÉÝùñE9¥™4Z‚0I°ÖO(Ÿ¤ò¤f€gÕººBC\VæeUÔì§îƒ´êé+qZ²mÜ˜e'Ú››èsâ{ÐÌ´_«Ã^C´º
+eW‰/¹:ƒ¶„‚½ZnÂïVÞHÇú•m f»:øÄ0Zø“˜xü.‹¿­e‘Z[F¦Jpˆkð_®Ÿ¾|)×i#bßyFd
+ïA‡³‚\X"„µÐAr•lÀmá?_ððn!¼7„
+Áç«ùvà*ñFCîmºŠ«}çå5|y~ÛðÕÊùtˆ\lh¸Ía-·º±ð‡¥åmPðÂî»ßæu&xÏV¦¦·0œ'Î ©Å…+Ù*]oÍ³2ˆ4Ú}1Ô‘ûIR­¨
+ØÅOüÁ!{÷•Õ˜xŠ9‡ÜEßsa½+{>êøme'ñ#ôÞ&á”8úØ²æÍlKX¤¸KâÌÕ)
+B¦•T“UÑeAAÑ‘![N ùêâå‡41Ø<Êú[p¦WbÉË‹Î¯:[:‰..‹·Þ;œ1ˆ€ËEZ}J†L»~>'‹¾ÔÑ¦/×Ù°¸:0Q>kõºX~ˆ+Õæ(ãÈÈØø¤dD¶"N
+ž:Z½MÝsüò)ÑÍ‘m›¢É¨Ý©Q–û˜AT[«ÕÔòÐ*â¡52’›öZa£‰¸ÂÝîeŒ•±<:/¡æŠ‰)¯p/¾üH×³bb¬Úg
+ð ¼ôæ¯'¾üO>-÷æ¯KA
+;‰&hñº×&î_8qõÏmò%õrÜëê‘ÖÀÂ˜ð­ð¥p†ªy]CúÜ›t%‹ˆC€6:™AA=çQ wFdLT…¼e5œG[Öíc€},1
+W3\£‡ªZ‰âÒÓs¨\CVnÏ
+æþ"]Ïuñ14}ÁÓGËç@ÝÄGêFo•Æ×ÍÅÿN5Ÿü/&ÛÍÜ]œëBÙ;»­
+b~Å‰oÑÈßÇ€ò¿ì5âèŸwÛÿÖ‘…ôªùj¸¹5B³›Yjá>jÔÇÀoþ8 3=
+qô‚+å%juQúT^+.,Ój
+™
+µNEö”þEàŠñô6MÅ}Üóxh|¶N›I€ÌR†;ŠWƒÃÏéW8ôNœˆÚ¿¡·a¹ú?†¥ö¯\¶phã£»—Làœjj6Ùµ=(  > žàvÂ;hDøÓ·G»¸Ñ.
+÷E$ôý8h}¡µílí£¸vnØí¤ßLÌª-fÃ
+Ãc½VœôøJxÌý™É$svŸNó8³\’3ÑMàØQò$8\ÞD«nÎo Úëw¹3„
+–çŸ¶f'iQjUæ9&
+!º>šeð‘º¡	üì½
+-GÑäÁÙ$4.ƒ«à8ºÐ£
+$¨˜=y"¿‡0Žù¢ë>ü`	Ê¶šÒÄMé·öv	9è'ƒ?zú£Aã‘€ïWÉ/`Øÿ§'<%ÏÉ’ø §pWÚ%Ü5påæZÞÌ„Ép²ò Ý^}¸|?uð@¸[Så6ÈøqVÍç¯‰½)€Á7„Üì!¬?>UÛÄpgñJ WÐ«×N þ”/; ªŽ3=…<dÇO¥ý-}ì§ößï…ìÞq´¹
+^bížƒ{†çpÓsâ7³5§’<û=A£œÁù%nð¨ßü•e‰7ýáöƒØ·Ï˜ÑCœ//øø!V¼šV»Åp:¹ÝBh3
+?6rÃØX“Ý‹«°¨‹øZ¶Š¬¸»†GÒøÆ»ž©rez|ß’µŠ~/·ùx6“Þæôõ[57õ_:{±§¬¬5˜æ5œ®Œ„a81¸£öhm õå…éHÄÛ0EG¼Ü)xzVï¢d‰èwó:ÚùÃ
+p"	í›¡=  Ñùy@o 3S
+ª„©Ë±žÞŠ¬â‘p6¹ õ?…D4pþÞª*#ÍùÎÂ0†_¹
+$·”°¿#Ñp€ÃÌ+	”*5U¥šÒhæÉØ3¼Ä“‘h¡7?ZDvt\<Ð¨IUZjFÎƒ/ qŽî€VyPx—/Ð›ŒŒ÷v§/^0ýb‚ó.Â&âø	óJs $71[™’œ¬¢—o[lO-]k:îÈGEúS
+—ÌF}Pÿ¿ÍûêË3ÝÐº Ž8Îx_9–ÒH}ÝÁ¦e0:mÓ?§Šã@2 •9‰99ú´Ü,š3˜U¢Œl~%»zøîÄ×ß_òkÑ=¾ü€†°-Ÿm‰\™çÁO®ä—ŸèX<Šæz>zçÍ§¿ßì›¯”æ‰?
+MžŽ_×Èø^¡[tUÈU¢Í’7¼t&—MÕÄy\ú„B6£Æ£!hÐã1ÐæZëZ#ƒ–¿S+"9üFâFÇÆù ;SöëºyÓ÷Z×oÚflæ[@nä›à„Õàù`[¢Ôü½$äòb>1YK/QùF‡RÛ“:~ˆeâ¾‰¾¼½Þ±tØãÊ[n‘ÿ@â»è#}þN£o[¥ñº…œ®÷j›7­’q¼¨
+ìj`š}€|¹
+x¶Êh¢Ã§õ”j/u«øN
+ƒÂ¹é’eaóÐX	až¸ä
+´>§”Q u*ú¯µáo0üEç‹{„”Ã¸A’:y­›½Ï
+·XZY›ù3Äþ£ š„cŸ¶u© Z=­ÖFÆ‡Aå{Œ%¦¼:
+[ðša)
+²X8¯Fpúòç—ášËB.®“<[ygv³¢µ…^'Ï’×N^¸?1¢9.´J T¹T>H/eàÎ^¬ÕÆ'Ó¾Eµ­Ó(¾‘¦œsÂþV0“›ÚmwuòÞäo›ò??rÉ¶Ïf .L?º™ÞpR}YÛh“£MjŠ¯Òh9ã»Arn¦NŸ›ICZý	z{Ù§›‚}¾y­øðÐJ£¾”YjWzQ!æÀ8Xr"`o|íWç•åže³)wEþY²¡ªõ´JŸ*×ÓºÄ\^ƒõZüS¯Á)G«SSÕ652°‡B¶²›|‹‚ªÃ™ºÕßbmˆ/©wb>#·úz.˜ísæ»(:_­MKxméÐ^KÓuºÒRZ¯ ú’R÷ƒ‡´åÄÛ?ÿo©ZÁÝ»YÇ£Æ’GB.Ú<T‚RÅÈV“_šÊ„Šý‡È$6e_ÊÏ³ÉÈ¼ò)è)æµÙ4ÑTDù!æC2¸´·ƒC9t ~Êp*ë$VQpïàEHÁC³y +'{¹—UÑõp¿…uáâ AˆžtÝxØö$\î½uG$]‰óÕ9°±£²MµËHïñ.òÊ=Æ¢½Ù-ç]ÌAƒ…$(•A›%?0Ä)(üñïp(3U'Ù¶íö¡v¦(¨5ç
+ULôaðM	y«îÙƒ¢v°–¥K¼ÁÖí;^#äiî}!çð¹bSÔ4úû¿ìE)q … ¡ìÄÜ‚´œ
+ÿþÒ^”ÎgXNÜø’_7³‚FÌê†Y¦ÁÃÍ‹¹­’(ËùG¡p>VpfAa=œ@•TMSž
+”
+’oË] víÉ7eëÏ jÔ­ë‰û,ój((I£õ¹Õ ”‚
+ýÐÌ
+ +Mð“H˜ÄÂ5‘v¿\
+5AÒD¼„ßÁ’3¡Žøâ ™÷
+ð°˜†,ü€EXæŸ¡bíÜ é¸T›pœ`¿Cµb4à‡øÆë5×/¿:G¸màè
+øÞOM8éà¿ ã|.Jî¬¹õA9}§úìµÛäé§'ŒYè°ÐÏUË–k9ƒ=ôQ¶3¿‘j=>5^³!Ä•	Ø±KªµÑ&…i’©$m²6Tf‚bú øNÓòqhø²@W·EÅç|™†ÖØL6—†ùÇºNùa%@Û‡¶Xn>¾	—ýúkwì×'¿‚‡ÄKÎ	Úóâ"% Ù5aMRòJN¡âÏEp
+¤ÏŸ|FBñÔo--ž<mÓ1`(nÈk­Š®òMÒ ­š¾Rq²é,õðÀ¼¹qå“mó×ÒÈù‰”J 	#9\LØ¿>‘;ÂÂïháU½chïy„8q }ô;~-ÃgìXn?;õðqšè ¿Ã‰ÖWwoõ4Ç€)ðãÓ k.ÖÒSqb?`k#Ì³XA©y‡ÐØ;]käžÚ
+‰-öqmyˆ‚LR«4*­î‰@›8½HU Ò Y{˜h^Úù,ãÅ/",O_)²îéy)ŠÊLWçSÅúô‚t†qß4U×~¡Æ“VN7™ß‹ré½ÇûE VAÍ°,Ð¤ÍUD‘‰šÔT%ý!ÊBÖ°N¤Ê·ìVÕJøÝ@-
+öÔéxy)M%ÏgàhE±ú”|*?-;‡×>ïÃ[ÙÅ :ùÝ^æó ñ„
+eY»’—aÄÖ—ªW.ÈµêkÙósm™_©R'Y\ßãfpq"mš&#Ü{Tõº¸Üâ¢­åibÎ™rà“Ç—"¦g1šÉ)EZƒ6Óð§Ïžø*-Å;Î=fQ¢ÁOè3óyçrép^OÆ¿]ä‘wwWt¦ä@N
+Å71'[È
+JÌ‹…æM¯"¨
+§&YÖnÔ£IÐ¤ÄÑSPöX>P©yZ}:YÝÊx;>P‹_Å©©H—Ã¤«r2£f¢”¡Ã2Q
+wiožåƒÚ»æ±<µ?o­úM›nHâªÏàÓ÷lü5‰”i½—½1î¿-9Ææ7ôf°½çµ€µËãt„šËç«“Xï­¯U0ˆ„‹÷67­¬Æ6¶¶œhBø
+Ø¬×ÅñæÒrMV\“—¢¢×.Xð“(1 è3ÈÂÂì2MäóbjQ„ó«w€®é´‡™§Hâì 4Î‡mØ±^ÁÏðú*VWEýhz‰Eá†äüBÒX[áoô×‰²”ù1*21qO°–&Ô¯N
+ª[´š½Œeˆr7–ÜFÎ•µ+½KúcQ²Ú¢Ý¡d‚V“OAZ~Ô0ŠRs4iidU(ý¢<R
+|ùß#]/rZ¶š"n¦(@IÃ¦e‹Èª¨"Edx\€K›Ï±K­gÎTÒp	·Pt©ªCWDÙrë‰Ìk"®û:XN»ßKŒpE6zOY®Ÿ(;×’ºü$M£/ÅJ4“ÇòŸ3J› ÅbT×Ó_”È#H
+›É[ »Äoô>$Õ/:¡åg°­ùÐÛ3!î¥•$Òj4 –ßŠÄOïí¿¸·1AQF{hTA1¤_U\iEEÑÞsŽm‹§oôÜM7(ÜË¶QQŸ­HÀ ñ¿Ÿ
+
+Pø»þ¸	}þË½ix{fœ ƒ*Þ=8A‡Ì”ÄK“I†çÅ”¤Ðüøê Eø³û-ç*R‚ªßÊsHt7Z¦;øa'è$Nõ¾WñÆ+d—(ŠÑj´€|Ç5¢ç¿97	õå¢ÿ?‡þÔh^#ß‡­¨­Bn/Œ‘Ü^ueþüU«æÏ¿²êöí+WnÓ¶–Ïä¨~cF`6Óòi‚f»p#÷Y1ÌÍ0ŠéUŽòÉýú€~}Ù÷®ö5êô:½^—©×.ôëgj5dè3CzFZ¿þÿ H«…ä
+endstream
+endobj
+36 0 obj
+<< /Filter /FlateDecode /Length 629 >>        
+stream
+xÚ…”]‹â0†ïû+²‚sÑ±mÚdvAë;3¢²Ìmm£[°iéÇ…ÿ~“¼Ç†•*<ÍIÎsNšŒ~lvþ¼¨ÊçÛª®Ú\ùé[Öx£Ñ²Î‡Jéþ]©B×Ñî™mÚ:ß©žÓõr­ËþÁ¯u~
+uúwÐBJ}
+±yØx¯>ý×õîsóêÿzÛÖU¦ÃÀßªÓpÎZ?°Óöe6áÿ‰df˜Ýfn¡ßªíÊZ?³ð1óâEi]Ù";oB¢lrU?–ºhÉ–¬»F¬(óžÈýç•é–¼»t½ªÖúX{Ó)›˜Ìe×·çýàM>ÚBµ¥>±ñ=I´šæ¬¬
+¼ÙŒêhÖ6}zÏ*Å&¶ëÂŒ–ýån+n“ö—F±Èqå¼.T×d¹j3}RÞÔ´!˜±éÊüfžÒÅ·qÁ1ípÌÿd­
+&<âpæ(u$ˆ–Ž"á(Š8"‰æã ¬)ˆ°&ŸƒhÍô‚y1h…y b,!» ƒ—#zB>Š$3	"3"Ê÷ä(`¶QöŸ ÊNƒPQ± Á%F}1\¹Pr!B—âº$ˆÐ%Žì	<ãž‚žû—`ÌG°–D	ªEí	jˆ(jˆÐÁ5DpI`-):˜à+0“D0Kð˜I"¸pìƒ€
+Çþ	rAEÙ|fÜ*Dè'§5aÆ);:(Qƒ OdäIDžp‘äID=C—$Ì$º$a&ñHÚMAÅ,ooñ&µ½ìa²Ç“Î¡=¨öÖùºò¡mÍ­à®&wòí™/µúº½šº±³Üã®½ë-lécåý’`‚”
+endstream
+endobj
+40 0 obj
+<< /Filter /FlateDecode /Length 24 >>         
+stream
+xÚc``1°W6ÎÝò¯ñÁÕ®  !Ê
+endstream
+endobj
+41 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 5105 >>       
+stream
+xÚX	X×Úž€É bT† ft&Zwe©ËµÚë†"Š¸â‚Š²ï"D 8!È"‹"« ‚Y•×Z—ZwÛêµÚkÕ«ui­­ý&îóÿ'h­½ísÿ?ÏCæÌœóï{ß÷{O$T·n”D"±›µjÅª%®cÜ,
+Ùìü¡“½sÈ&_óˆ«¨ #kNH‰ƒ$"g!ò–¢m7<ÜÚò¬u·Îx|d Ìu`·ÍÒA%A½Íï¿ö…>ÖCÈ·~—­‡š/ü`=Œ¢-(	eG±ÔJ$ÓÊ$ò¿\rœƒ“Ó„Y!¡qáþ‘ªqNNãÇšß'«œTn>‚Bb"‚U>Á¾*7 Õ ÕÂr5P52$XµÞ/ÀgÓFUÈFÕ2?OUT„_x„Ê?<$*4b”ƒjY@`„*&$<HE>Ãý6ùùDøùª¢‚}ýÂU‘~*×åËTsB‚#Uîü‚#üTöö*U„ŸŸ* 22tŠ£cd”¿CH¸¿ãFrO„ã¦77E8šŸ³Ÿ³há2{÷y³\z¸8DÆFª6†„«|ý"}7E8üq‡ïþ›é²Þož¯_pd`dE^,5D
+¡> FSc¨±”=å@9Rã¨¿Q“¨)ÔÇÔ4j:5“r¦fS.”+5—r£æS
+¨ÅÔj)åA-£–S+(OjåMùPë© *
+¢6S!T(IESqÔKRòG3£ÉC‹ÕW,—ZvX¾ê6®›^*‘FH/ËÆÈÎÑMVÃ­´V'º[w×ôÐÃ³GzOÇž‡¬m¬·Zßè5 WŒœ–ûÊÊïôNë}¿Ofß‘}ãúž¶™eS`ÌRæ’­‹m"öËM&$ÀpA\#1]¶FÓ8ß$•Vk’P<’ž—Êc}çÒ­.e:­–Awƒ´éS¤;È
+4‡Š”Ù…G¡—ÊegñpéXµÌÐøµ±Í÷‘®Ç7!Uce ƒ:©\üTkÜ,À¢}`o´©îà
+2F-­RT&¢Dn¡U*!ˆ~0û
+<j)–§_×[SW_Þº/¶D—Ååì­×²_5øLçéÙ:œ›Œ‡)Íèwå¶ÐÒZÁ136!¯Ÿ¹#²²BTÅc/ Ìþ1Ž‰ážãŠ8ùkð“|ŒqDmŽ€múÏµÂç,[$0}(ÓMq°B 3‚6d†²šIú¬P^MWÔ mU¼ÇøEgÌ²bÆhÜ/Î¸ïûmqááÖ½uVÕûj[š”'‚nMýhôL/.š¿o7Ó=:.085e sZ¾-4DéðÜ,®]ªl>ÇmÙ{[ý’½sëð·^-›‘>>5–U¯ÞwÈ‹gúÌhöh¿t zö/+ÞN°“ÁEÁÔkÖz/Ÿ»ˆKª?s^y÷xùžŽ"·Í\gr·u®³P*ËÌÖ|”’Z¡øxK-ß0ïÌø‡®VrÓRàÃF($0úÁIbiÒÂBÅÓ‰—pÏ|¨Ò/ÎÞT>špOä:ç¨ê|€)µè+ƒ)ßÞÎcgøF1mÍ‚Ñv‚p“½Øýw/¾ßV$!l‹‡rØÃ
+Y™€¼ðû}‡F)71Z£hk„%§l^-ô[&T|
+`ÿ=æ¼*8&‚ƒv»¤HÕôù\äËw>è]¥%»w•Z1_¤äu,ÀÂ¨—ç±­-
+óåÖ {i‚Xß“;·ñM7Ô©=Å‚á^.¼Üt]#ˆ¯É°u–¦\ˆQ”¥êã“Q|&‡•©¸×ÂáìÔIUçVòêÓI_=T~j êó‹ÜÅ/¾+8Îõd:f*øXƒ>£’­ÖgUó¥(?.9##5…›·XztÁÜÝ®,ÎÂöxöÁ>@>!
+zÍËÅ<m³Ø»Ù¦‘ 	úCß¡/óX‡îŠâ­h[\fFbç¶&Ö“Å<‚íŸ"°EC‰NWÄ3Ëâ¶dD'+Cý=l•³„cÊ±ëLLc+<àû±à Û V¹¼®#p‚þà$ùœ,a›h¡h
+hðöðönhkkhhãpK·?]#â™Ñ°¢ëÁ©–`¨S\<½ÄkS€÷†¿cõe%—‚%n+¢ã¬´i:V¹­`[ÞÎ_îO¨#C‚ø 
+IÅ~0ÂÒô<T@(
+¼šët~ ŸY2X£IV>áñ½K’V­å\×Œß²ÅÃÅ 0\vñn¬K ßà™çêð1›Ñ’`FPŸ2'¶ypŸÛ	ô‚TÔÄ‹¿ÐLÛ{hÁ+é¦U+s>!Ó
+ ãþÆÂÈsGªöÔñ«ifHº15q‰ë—Mg±A¯«GÐÉê&¾µVØQÇžn
+® åªÒ6ƒû~˜b”ÔƒmÕ°~b)&“bíŽEiñi[´Üšè¥An,œ	ŽñpJV±ÕÔio¬:Ê7®Ø=‡Å&Å}±òÇÑ0Æµ½*áÇ‚RSdYMúÖòýVÍÕÍ…µ,tÏÂýô¢„•Ttåp8
+0H°4Mç+6VÚù“9wI‰Ž¾@‡Ø Ý!^À,T¥Ÿæ{Ïä8 –ÍLñÍ­‚
+PÉ`bå4Ü}'ÄÏdî—„%D\© ÐÛRœ'š­þ‡§ŽÂ”–rÃg¨¿Â/ç¨i°1H/ ‘&ÀK Üë
+_çïÙ¾eär	š”ØX¥wClõ¾úòRø–
+b7ìm‘{GTR0ù²Ka9¯†¡ÃéXìÉ%„iƒØ‰kÏ¯æ½O%^û—º•}v°ƒ;Ú|óàSö×ÿ“jŸ9ÏÚ±’Å™ØÀð†¡`ÿË¬óGùÐº³a¹l1*ÚÉƒ-¯c/#Œ}:ûiÄÓ0#t{ºî©¿Ñ¿Åòî#°D÷m©P†z!ž"ª^ßà• Ö¬ã˜êÐÂ8Ÿò™,ºlªËú²õõ‘|H€ö“heBöêæ .Qçí®ô<5ÔàrëÌÕ})ŸÏ=À1‹C÷z,BcØ0/¤Oã×åjw+wdïÌÉãëÐˆöc{XzêÖU!|Â.~ß®ò¬½UFZF²VÉô
+/‰«®.)­âpÐXÅZ4w<Ç|:]:|]ºÍ]Ëƒ´³—Âßw9¶ÃÖ«ÛÛÏ~ŽŠ9è.«)ZÀË_÷'%n ð-|¾4×á…€)Â(ŠÃoòf½G!ƒ)…
+ñ—Pø]¥
+ÏI«n{Žta4Á—¸é? 3Ñï¼s/÷&Ä¼!b;aÒ¿,o1Æs‰_—	eÌ³÷õüè¤NJîõ£Ar¯ãóåÑÓ9\ù„rqî;Ib)Ž {‘‘½ÈHÈëG!/Ö‹„¼ž„,#!ËHd-ÏQ;ÛN"kéÒ@^°þN6wÀ	Ëbö@“°@A3§±³9”3]bqÞ¼žÜ eú__(þBÆj#:%ê»&ó€¾­d>ŠÌW e>
+QCcwód%(c'_‘Ž£•ƒéU	³mIÉÊNàJ‹·—ïT6„ÕøsÌ\¿ðPžI^z6ðÎ½'Ç_qŒ­iÐ_HñëïmÝôØN¦Wè²w%ñ¸~…TPKwW´¢}l‰ ÓmXŠÒX¿YÈàO¼HQJÛÃïJOÒçë:eø|¸ñÿ.òFúÇ»°Wm×¢ƒv@J\
+`Í‰}ˆ³ÍWÌÎNnz¯&p–èS?¨Q¨esRâñ8ìÊ%bILë°­f×
+=ñ*ÝUò¸.V$ƒ ¡@ÅÄÒÌ•?£7AÀë›HX'ˆ÷ybß	±ŽôÌ–×Æw¨Æat”…kxœÚYSÅjéE±8Ü¼èY3#*33DÇ1]D
+aÃÕä’¡ñ4jb]ëq3T„pšñŒ‹×gÅñÁ†L}…Rô4ìé|.eöÄä¦°ey;ó³y¨±TßµóÆÇ¨…e4-ß›…Rþzé[¸½aÏ›?ÛLÇëßpá¥gËP§•«¼Â¸Ç1Ž?vÂÒµîA<P4ó
+žñ{ã:ÿ'Z|×qþ@EÌ´w´ø/CÒ.B¾‡™µ`ãŠ¥žaœyÕ›ÿ}Õ?“Ñô‹¦Õ$kîÒø™`oij†G
+Ø„‡ÁŽã0Gâx¨ð ñÀÁ0ðá°ýN…Kú8Ÿ9œóZ—¨åìbç½_¯ç?9Ÿrížò‚áŸ‡.sçZ.í9Ã^¸2¯™oœŸ=ÍUID›X%¦«ñB.ØZŠM¬ ¥ã
+<	ä4À}î€áïß½€Þ¶-PL@˜ÂfPßFÇJp K[Ë;ØÖÖ-|y Z¶Æ<-ÁžV¸#$èIº9‘J¼AW aš”šÌ-6E³1ê2Ù®SúÒ3|g1&”2z…:ØŽWæn+7Õçµ@Ç§æTø‰I
+°ùO<…ëœøÜeÿI¯<p¡ «ëÐÇöv³Ñ4<†XOè V£ÑôYfAÅ+l„{B‚ÔüÖ!c)©eoâ’­¨·6Ùé{<tÆŠMq‘\ ÍäSï¸ãÇwêÿPË…4ã¬	h;´­……Ñ?½õËx°ËJ·­jtr-§)BúR%ÐÌ`M©^_\Ìµ4Ï©`/}ºÛäc£_o!£žYŠ68I±]·qÁ5nç|ÀÖ*ìIî+aÕ1ø,À’Û¹S¯ß®,ØfH‰÷ÙGŽØ1»Vâ¾û±…ð‡é‹ÿš[Êæí0¼?¹ö™%ü
+
+èû	X¨ïr@ÏsºË¦lÓiÒPFÉl°íì‚?TâUžøCl-¹„„ÌÌ4¥f‡.¯¤õ`ÉnŽx^ÇJp¥|c€ßšß[!è&³ª3B‘RC"~tÐQÛ2M?<QT?¹-1“S§Gmf%_kMã3
+R®dnßzuY÷.+°Úwì‹‹ÊØâ[¼˜ëìC4á×wu7>G­lëó.
+Eê^ ÝéâC(°Ž¯@±ÎÊyhõÕ@.êÐùôö×¢‡»x,ˆ£è#<™ÃVäöÄ¸eM]H2ü_…@¾äÌHq¡ØMqbyíJ—
+«Ü#9ÒÌ
+<åOdþÝÃÍ¢¯îùŠV®¯©­­/o&Y`ˆoóné6É…gp…Ô÷¬S€å”oœJ9<¬Nº!ßãÀ9eÛÞó?Þ~ˆ VrÙ(£œ­BÛ+y˜ßeÉR23·i¸µë¤íKÜò×°xì¬1CÜö{•Gñ«¤‚$â>9žWD[íLØæ¥\6çƒéxlŒJávg¢íQlÒFòØÃäÝùYY¹y\{»tõÅÇZ×ÉçAú‚ä`µ¶>È(²õ6× é+Ž •¢-¦!`/ç[”3µÈjc®[ <ÿ•~Õ¼l;— ×§½óvW˜é(Ö—+
+
+ÈÙÀnÆ÷ÛPZÏ7 4jonµ2j¿J\¬œáˆ¢‡ÝhKâŠÓÒÐÖ·±IºbËÍB;Ë9FW]"
+j?ŽÊØ:p@0œ¶…hÊ-AÒ*¦<RHCÌç(¢‰aÿ÷DY4ÖJHów|CÙ›·°=ÇIb<Ï°gÈ»î$ˆ½xëk>Øñ1–í0“‚œ;þG ›— S
+ÐC`ž‰6ÐGqBíI»E„,A*9¨…áj:sÄê‘#uVþwpLõ]Ôµ¯Ÿ¾Á™õúÂiÜ(Øœ. 8UÇ”ˆÅNš¶.&yþÖT+­fÚÂâ2¡éxÛáýVÌk}{Ax¢úƒ/Éé©—ý‚I¨ªo®8zÜgWB6WUÛX`dïµ»Î˜ãçê2›Ç^ØGš˜„2b”q4“*Î”1æcÛ	xqJò['²47¢·ç5ŠÆóG¬ =Ùs…ó4Ýž“|ÿ‡‘­´ê›¨ª¯£[íÜTZn2E›XARm:miºkbÈKuÒ
++‘Á—uþ?PRº.-SÇãµkp !ýžx¿1ÄúøNB† ^ýˆ†ÚK¤qyÙ){Ù]E¨ª€‡Rñ¹´(';ÿ+.‰‡‘Äc–âÛŸzÂƒ3ÃY'‰©´V—‚PFÚ6ž¹
+˜jéIA†ûè°Œ_ aV§µ4¼°±%;å;x˜¢´8';÷‚yê®#˜¤B<k)Þ±fÓøï°†œÆì¤ÅE9¹wYvÔ
+5/S\˜‘ZÈ§–ž>É¾ÿ( ¥Íd™^:lA†¯ÑÄ}ºã~x„46Þ­!í‘á%{:.v{B„Dü3€¶“úªe`m6Òf +~F šœYèw{‹ØüÛÞ€’”iI˜&Ç**ÿcc‹: G®‘®‰
+rÍnÍÐRøüìÊâåþˆªÀàX_OaýÙ›Ÿ?]ÃAè%-Î5tmùºÆ(¦?7J“NkîäÕp]ñ,R°k3qò¨‘z¼´šñ?’N^HdÐ)u%ç°Õ}ëfÖß£âF"Ÿ|ý|Jy}‘wœ{PxuG{°%v])_²
+ž¬|c½^
+_‚ín£Y&I+¢–åK¾
+&óßš×c‰ÿÇÐx¶63]ŠG<—}{¹ñQmyZb%¯
+ß ô­
+3¬ÝÓr|Ýl1×y[àbîÐÚ¥Ä	lŒÀ½øïÎÆ½
+Ð»«±¾¤™Sø›¯Ê-õÛ Í¼ÔA˜+«ÊA<¾üÖÉâNS?ÅÆÄ”M±J!x_<7o~N?¼Y»¼J—PÃÉÍ?Ø÷Yëáƒ(Šú›ùøû6šqq>¬-ßQ ãÜ–mr´îŽ¬{
+=@Ös¿Á ×geëssœµ¶rZ‹r
+yÙYë^ÿ
+œ¼ƒF
+endstream
+endobj
+42 0 obj
+<< /Filter /FlateDecode /Length 567 >>        
+stream
+xÚ}”[‹â@…ßó+z„™‡Œû:ˆ q\„Ëª;1]ºÓ	I|ðßowŸrYAá³NUªNgôímëÏU³'?zbC}sîJòóç¢õF£eSžkÒÃ
+‘"uöâ­kÊ-
+â._/×ºîx­ËÓYÑUu[´ c¥¿$¶¸ÛÑo?ÿxÿøõÃÿù¼iêB Ò_4'åK›³«†“ÑþO&LLÜŒ	Wâº¾jô£¤”æ'­ò¦¶³õÞ˜ý‰ñÕñ¡Òªc“bo-{A(TULî·¬Í’lòöÒT¯õ¡ñ¦S1Þ˜`?tçøÞ¿vŠºJÍ"n94Ší¹mOdÝéÍfBÑÁ6»y)jc;øZ™h5\noà+cwiI„Ž˜-E}[”ÔúHÞÔ,@ÎÄte>3´ú'O¶?”ŠÎÊƒ…‘K 3G¹£”ié(L…!”!(‚’iŽXBÍ”	5£9ˆkæ 'äÅ ò@ú¥	(…^¢1&îž¸;wøâ 3´‹M@Ü)Áuœ@¹ ¡{ŒLi§db/K{aÂìé“£DB¹ÁKÊ/Î!Á®M‚#8Ë˜à,ÄD	¶b†ÎBî‡ÙœXŠîº'8±Ý3&TIp*f=.Æ„ù"®‚ù2œXÊýpF÷câà:ƒë®3tˆ0_ÆLù;q5?¿ö·÷ôó6•ç®3WÉ]fwcì]©4}Þ÷¶im–ûºÅõueéuåý,U8
+endstream
+endobj
+46 0 obj
+<< /Filter /FlateDecode /Length 25 >>         
+stream
+xÚc``	±UþüxÞoþ¬:  /¦O
+endstream
+endobj
+47 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 6046 >>       
+stream
+xÚ•Y	X×ÚžÉ "*cÔÎØ™Ô­­
+R­{UÔ*Škq_@Â„Âžä$ì;²I 0È¦@e©¢ÒºµÚÚrkµ×[—V[‹m=Ã=üË	t{îííýÿ„„ää›™sÞó}ïû~‰ˆ°´$D"ÑÔ½{7nØ¼nîÖmÎÊ ÷ÀåóåÞa
+w•ù³ÂKÂt`Í
+ÓáE‘ÀŽ8
+Af‰¦X[´X[í@g¦‰ÿ1$~‘ Dãñó(ë‰ÐÆz:~5¶ži°´žEX"DÄTâEâ	1$²Mù7W]hgoÿúzeP”Ê×Û'T¶ÐÞ~Ñ<óórÙ:;™“»‡¿2"ÄßWæè)s²“m³“mWFàQ_Ù+Ê@ÙQ¹»ÂK¦ô’í–ï—……ÈU!2o•2,(äU;ÙnßY„Rå/ÃÿUr…Ü=Dî)
+
+ô”«d¡>r™ãž]»e•¡²­¾òÀ¹lþ|™,D.—ù„†­X° 4ÌÛN©ò^à…cB(F‚B˜›¿qÇöÝó·n^¿aû®
+v¡‘¡2/¥Jæ)u÷U„Øýó}¿]©
+pW¬õT•oö” †ú†FøÆÓ0T/3ˆYÄb.1˜O, Kˆ¥Ä2b9±‚XI¬&ÖÄZb±‘p$6[ˆ­Ä6b;±“x‹p&v»‰ýÄÂp'Žž„œð!|	?ÂŸPD¡"B‰p"’ˆ²Àû‚oK‰¥æ²$bEãF‘£îY¸Yh,þa¹Ç2Ýò’ø ¸G²XRC ›­Ö–îóæ˜cLc-ÆŽ}hý²õÓq¾ãlÒln_6>~üà„¤	U&´f{™z•úpÒÊI:éiáä±“å“?™’4ÕaêÍf¼pž´, <<Ä
+‡"Dƒ¡“ùhr›:×”À¡ˆAR\˜ªÉ‰ab´)1)òzïê³Z÷‚‚Lo©ÍkÄ<é¬æËè\C¦!“í„R1,œGsÅ	zM*°
+³8þÌ9ÐÁ ©0_ŠÔ8ÞÛùjcD#ô6Â…FÛ«àÊ¾M”«òµô¢r7© ¼½AW	
+×“½ Áµ•=éu¨ø ³tƒûEEtuMYyu»k&àªkºrk™³½òEœ¹GëºÉßj½OØ>šR/týnËSK­sÏ¬õngŒW‹ïphÝ9)eœãpäð‘†w>èýÎÏbmO‡ñð#£Šoça¡Ñ¶½¿ùz°)º£éLˆ©­Óu¸ÃDÙ[Æ
+3¥<é£q€FãÒÅ
+²«"<L­Õ$Äp{_SÄÔ`·@wï¤<$†¬
+´²ºýuÇ¹+45FÖ}oÓê]ˆ`©>I@Æšæyì–Íõ
+›­Ü„„ì¡_ÿrË7®š:/°›?½žØÂÜú ·ßÀ)%k´Û¼0{¶vºpgÞ9}¥±·õÆÔºÎÖÒ‹z«¡qp»”Jß¹qþü¸86ðsÝ§…ôEÓ…®÷sÙª¡<i ß[>ŽÌ
+ÕÃ^Ž’U|^W÷^/[½¥Õ¹,¸eoaì)O+¼rµ±ÍØah#m{MPÔ ‹û”¦Æ>`¢Þ—
+FÁ‡R‰Ö@­A;Ð´FÛ¡9@ÏoáèòN8ŠÍÉÈ4äÐùI †M”Ó‚äXN¾xAØ|½…&Ã…p=ÜgÀ—á8¾¬PG-ì™·b{`ÊÉ“,L"@¯d}%íAû[73ˆ˜;MDÏƒÄGgÎœ(åœ‹.«MµHö¨ŠžqÈ{•4
+hbÃÙC¾.‘ÞÌúýPE—ú?nìŠÚ×ÈD]$m#ÜPá7Æf#ôj=¿	ýÂI¨Â‰¯ü€¬û…°ð:‰^Qã}¼‘›|zd"›/‹ðï(Ï3p,õNáë¥‡Sö{°þaG{WyUs[ôe4<B–}~	ÛÑÐ]ÒÂ´Ÿq¯æªÝ;ýixj01BÇµ[ÀeÈ_ú%dÀ¹"cØÿ^BÆ€ÈÊ
+PQ„S/:ŒœÏ‹z „Ô‹A xLš rcã@r¢ŽEó’õÚ™Ì´¹ ž„õÐ©çî÷?9 %U\œAŸZÈ”€Ì
+Æ‘ÇAn|²F“˜ÂîwóþÎg3h/Z†#Wt®@
+án¸â|Žælµ	6=¨5‰úá‘GÂ8VZ 5ÐF§°Cwïg¶,? _öw:/ž×ªš¹ð´ˆØ@:¸<¢ººâ8eCË"4i®o“ôÇWqMsõp\.‹
+ ý!!ú
+p¿0NZRX¥ª««2Ö²èSËÚ#ST…à±ª:óÈ!îÁ B'£ô0H?nöô‰
+
+*
+j4— ?°|Íz6-¤:5+9;ÿó[p;¼Éª6_im0ÑØ€7›W´Ùâ•åõ¿y“’e
+Í“yÒ11»›~$©};ÿ°ÝÈ—ÌJuíYÅ ñ²W‘M|:ŽýäL{E)·…¤^!àKœfÇÂY*ÝÍUáéÁ¸yTµsÁíÚ÷êéÎ¬žêÓl}e+ßÃ´—×p1#ygÆ×§
+®6Šjû¡æÆÀÙ©Y‰	šä4;Ëw¡ösèhMC(ç×­»ÔFÃIe&¨x¶ë[4	YÏŸ& )?½m M÷óœ#¤¥(Mírï—˜˜
+—ÜÑ$=g3¸sw';x[(»îCÂg˜¨gƒ¤pHª„aâ¡w'$·j/n¨ŒôÒªW³¡
+Iú™+˜ŒO? šFŽ÷'íÓ
+š9¨%©Àû’'ùþK8,UJ–¨ýç°¯ÁLIƒ!»“…¶8ß¸
+±%œ
+¼xAÌÃ4^e´…â›àëŒ¯©™Â¨Ai‹üän–º¼jùÎ—9D¾¡¸>%]Ô`3V CO¡þ,)¬ä:M>¾d´âÑX(&©IºÏ´³Ôô¼<mZ—¯¢ƒË¢Œ5¥eÕx{óÃ0#}7÷.Üg„SîÖGØþÈGó÷øŸîS¬Z8
+Ká¸Åß#Ñ¡ƒ1Þ>,<@&Öñ©<ÇüuanJF* Ò@b*yØ%ÉqsÍ)sá25˜½ãAB4‡:IJDD5‰S=9é¹Y\[]WÕ9æ9@vÞ
+°MéÊ¹ ¹Gz2;75÷…pÔydk³Ëk
+›ø°Ò pe¼‡ý§
+ KÉà¸gßÁ	¸¼òñÆÐ¼†«ÿrŸ…	—KùYÂA²dGÆët±‰,zÈK¬€Õ‹I/Ú
+Ãûrõ#Íd~4W9>Œt0ƒÔO®å¥H $b›Á.,Qq¼0s˜*ï[¦Á4,F'5ØËx.é>œ¢ž|”ïÅm%‘
+š â–£Ý°ù´ÁþßiÃ
+.E¯Ãýß|ÜÔmâ‚Ž7ùä1ù ·„ƒäéŒÌëæ½AGkàÖ«wj`rmíÅ[qá´[
+©I„&¼,-‹å=]Õxc*ƒ<‹Ü™yëßØ_ç]rŒÓj•>.´o‰wMK=Vïñð:L¿ù½3œÇÿÔs«5òm¯*¶q×[`áI\`VdM=]’Yœ[ÈÆùcÌ·ß¸Ý­lˆ+âšNw‚&U“”E«³#O•äU°È	ÒP0ç5–Ê#‚ï*k
+Ç«¸òâšbsÌ	å Å•Ôyµë|–rR¿º¶óBIÞ ýÜCI=¯[Áx£+<làE¸¾àUxÐd>”\­Å[#T’Í†ü[ì	^¢qÝ\—] Ý•Sœ ‡
+Å¢«0ö/C†*ÿP“qMv\š3Ü¯€Eð**úÓLy€Çsƒ¿P´ìƒ^}”Zxå·_x w“wA­²‘5…Ê
+0›úìRp:øXBµÿQïJ~+ÑÎ2}ÓU¨Óöp<¹Y
+:8èDþü·sWß+<¸ƒE1hÃmWDù°Æ¶ÀmÒ+¨fi#€
+£fïOæUäJmA“²&CÁÖˆñ8êÜ7G~”SÉ;†xo3ÞÚø•¬
+/¶õhgÚo M+gV3ã(ÚžCÂökH,½Ia^©SZæ)N° ©^4Ó¼ k¹)˜Ñ+~›ç™
+ýÛLIÐtsÔÔ]ÂÓß„èwÑFÎ
+ƒÍ0bƒ`qÜ¤…
+|v¿}—7GFÓážï¾ì8u#ý\j>ZàÅ QfßW¬+HŽ¡#câ“Xô+‚IŠÿSl¡E:´0»åaX ¯‚¦ˆKÂrâcéM¼ÂB¤‹kë¦çÝäßá¾Å¦Y)™­ŽE¶È‘y]rX›ÝÀ	Ø¤d<`ë1’>öÀƒqÙöç™%ÔJ†ñÃ§3ç‰ø&Õ‹&ÿ2á¿HêÃ›
+Lçq¶OçÉp²=À„kÎ5oóß$’Jì3'Ü¾ßî0ù5³ÔøªpfýA÷½Jî½x¦¥ÌÊƒû\Â9ÝwÊ„fý.¿å}T$>{çÒ…RÏ
+ÿ&ýO‘Ãå<+/8ð¸– e˜<µ{Žé1 ãô†]œ‚ ‡‚¸¡5$ú¡T\¤‘zCa’tU'n¨‰‡f™Ï{¡HßÍtë´çñf®N($…UCÏÅñ9™ ³kN't’5 k€ýµ\ð¿à÷{­îþÓZµsÛ¨ŒåtO$Tíÿ ¬ÜÿT¬f)m~ø…ñË‡0·8œ%?‚ÒGö¨ï?øw)¬BÖ¼†ÈYvh
+¢Î…âON÷´—²a$Ò 
+7çÐý'ƒÙ	õÌ!G{*ç4]U®TFFlîq»¥ø>*Y»‡Òu~3æÇWüYêEud
+èî¢»À;-ìÙºS…MÌš	\‘WÆv7ÚÜyÕ
+¾f2kZè€ÅH·á†À%¸×0wKÑtÚc»ßíq3q„U,Eùˆ[4{6â¾‚ùPgÜ~òÎxiÌª¤6	s†­WS¿Y}}¥pÊŒÑxDÍ–a{5ñÇWàxHýðÏ.Î•z·TGX¥K„;sÀÝx*”
+nÓõtÐÍ ×ØŠ'üNqÓÛêï[Îp×ïw§‡å]hæ¯au¸e!¼9Û(;
+¶QÂEÒ¨3¨Ø-Û £ Ë.ƒêóÜ&qM¼ëy­ékÐÊ´Þ š&œ; ¯Ä6Ü¯ò¶§ À}00É†r”
+)ÒïgÞC‹Ðoþí×Š–Pé
+’Ú>¢ÔÙ’Œx¸’„²{¹Y“]…V°h&¬qq%p9s5Ë ÚËÃyFxßTÁG›lŸ÷ÁÊ~ê•‘ÖÈöÕ§hÌžaGåìU’z>Â7³RÜ¸!Ÿ¿JÀådpuƒß ¿7M“‘ÄqÑ
+WyucW¸Y
+"©1ï6\(oc>»ô"¸‘ná—Ná¼ô_›‚ÁÓo†Ã¾vØ!lÚÍÉ‘.­ŒÄM&j§$% ,,„Ç²è:EÆâ—ae ÛüNò[{OÁ²¿Äëž«ðR[ùÙ?ÿŠÚ)Œ&Hëê\w¸»o
+eu?J¨'húŸ•Ü¿Ø9dk>îh%¬ŽÔêbâCè Šè'ŠÍ²r#Ì¤ä¡³	F™€	.7Ùö^ûù\xšByX'{Ãß©cÝ.¸æ;/ª˜º²<øÚÛôõó×¾€Òssg±‘éúÔ¦dc¶ ÛÆœød.>™‹Ê+ôÛgU½ïùå¯F£—ÚÏZÕy(3•;s¤4ŽU~™«=ékå;iÇƒö«nÌ–'±Å:ÇÄ‚¤ŽJT£=dH*ÈÖë
+²ÙÂÒ„¸“ç¬v\¹ÐÍ@›ÏŸ>ÇP½Š;g‰VWŠÎÂ¸³‚N’ž‰¨	;ÁúžôÎ^[dœ¹®°—®?Ñö ÙËT6^R
+Í“.ãûÊT-ˆcµÚÄÄ”T«J…"Ë—ASýÖí÷/
+>Æ5(Z’Ï&žM8®©Œ¶ÊK2FÊéE³Aì¬à/ÏÇ³y]V¼yºQšDFƒÄ‚,½¾¬”ÍÈÊ/ÌÌ´:ÚÖ¡1bßþñu3­éÂ…»wêq=:á^6mpª$ÈVSX¦á”?$›$'r.XeeßEô’ÌÅŒ&#Çx´Ô™V×ŽNðv!ÛMÂ—+¡UÏÇ,”Á]âÜ|`¨ ‡ySù~a¼ûð´™7í5áGò#ùƒ½œPoT`ò<"…Ô‚ÇH¼ÃÍg‡’Èï­9Ç¶–w¿ÛÇ”w¤yŸà¨	¼b"ƒ‚K#L¦²Ò:ŽÒË.zôØãžó%D¡Tm6}ÃRVÐâé#8•³×Kƒ‘^,•èà¬8’Ä8ûuÖÆs‘gtwKhê%«ë<$—tƒmõl™<„‰4óÂw;ÕÝÂ~iîÿ‹”D 0 \^T^
+ç0eµ@›Ç•¦éT4¦_pl:ëi¦&8Êì¹ð3&'Þ“œŠÌ–­ZŸ[žÁòj@)ç” ¢åEò™˜b)n°ý¹Oiºdþ¦è[ø-œ íUî!×*¼½7¯JYX gñhÜª$uK}fÎÑX©Hê“{¨V‚,?ía©Q×¯Ý¦Û€Ó«ƒMÐêé2É¡(Š®PÖjŒïjé½}s+ØGoò!}kÉ¥3Ví\ãWY[[QQ‹e†h)öeÛª/—w3wK6H9¤’s
+Wm ÖŠº×£UiA“¨KÒ©é¸pœí”ÜkÙ0MrôÞ9'³Ï•kJ5è“ªŠ@UÀ1÷…6B+8ñÑ}³€çƒ;pàÇ^töGèÿÐ·°+ÓÆ%íŒ‹±JLÙ"´Qòý7b¸N¿Ü3@CrÞ,8ä*{ûí©¹•u%Muá•ŠT
+Ð¥±7«®ÕŸgçmœµzÙ¡}Ú‚ŠÕj 
+¥J‚J?8eØÿÝ¾ÿ•UAOI4íÕ%/¿…Äp+LøëŽc‰fÃq/A¾ü|ñ)
+‡È:Ð9ìPÔm‚¸M4âN,†ÍÉð7&’hîï|¸\x`Ëúe©íçYøÅ/ŸÜš…šC:÷6¢¶5ù4s®ûÄ¥ZN¿L‚v^¸°€	¥Ã_œhãÖ[©Ð”x
+µÚãÇ‚é6MÍÎ@™H«Åš,mV6]ÝÊX¼d·PÝÆ'¤{ãðÎ2àUÌÁÙŠc²r4¹LnŽáx6 §ÁÏ+Î64ê_À50r¹Aùðå4ZàÇÈcAº >¾]WA'hS4Éì”>ÖˆS
+Az:]ÍªñÕ4.GA£ÀWóÇÑõåºØ|.W]è¡¡Sc—£°y°PœRtÍ©áÙ!‘Fì‡£}qtW¡Ö·€ƒRô³8>3=¡˜)ÎÈÏËààÉgè¤8!#C‡ÒóðÈÏ*/·fTàéšûx™¯Ãø1äÀÆ¡)p…89 
+>{’“Ãò
+
+U—õVx‚A ‘G,§X[˜AÇ$ªSSØ-o¬ú£5dÓù'ôfìäÁ:WìžéXÀ>4hwvpÏt-ÞqÀYŽ
+Jzm
+¨eêëuÚz¬ãªtÍñ<:—²U|u±îöì©ea@›B«âBtfl«Ò·3à=pÊì³N!wc//¨yÛò/“¾¤j…ã# û+@óëwhw­NKHKbg£Dd	‹Å)X$ ]Ý *Ì(âÎHãÒ=qð™2mFqá©Ú)ÞèèÄ¨¢
+
+Žú!GoÊi «#KBUQ1A®m^çÞo÷B
+7
++ó«K[¯0œ.À$ØEÂkÐ×'²HˆÛ&2h´6ä0gÐÅ	 šE—¨Ñ2L‹Y¥ÍPÌ@K	j²'â*L¥cr&¯G31 m¢Óý°[É ø‰ôº¦ßçoì7GÖT½ÅìX2÷ç¿1uÅÚÉ0§ý
+vIçg1Ìû}¦‡m\Ýõ¬¿Ý¡H·¥	;Y$	_› bÖAq$—ðèï¥o€ÛØ¯Ë¯•60-W#ìÊ¸üÝ`ÕVÚÆüËß±žý"A‹Í¿åÙÙ†U
+ëÃÀü¬J	ë´[±Àz4°Ë¹?¶JoÀ÷¬ÙïZ[›Ò9Ùéé™YÖãþI¿T
+endstream
+endobj
+48 0 obj
+<< /Filter /FlateDecode /Length 590 >>        
+stream
+xÚ}”]‹â0†ïû+²‚sÑ±mÚdDð
+;¨ÈÞÖ6º›–~\øï7É{œe]Aá1'ç}sNNF?>÷þ¢¨OÊçÏÛ©®Ú\ù«·¬ñF£u•Òý»R…*î«Ý+ûlë|¯z6^¥ëT—ý“	Nu~
+uúwÐR]JýbuØø ~ùÇãv“.ýŸo»ºÊôÔß©ËpÍZ?°»e5Ñÿdf•=Xe.ÍQµ]YëW> A`þØèbUWö„7!—lr÷}.uÑ’Uv²Æ½0bE™÷Dî7¯L©ìæý­ëU•êsíÍflb”Ë®ooÎõ“7ùh
+Õ–úÂÆ<š˜ýÐ4Weý°À›ÏY¡Î&µ©Ñ{V)6±ÇO
+³Zö·GuøÞs¸5ŠEŽCÎëBuM–«6ÓåÍL‚9›mÍgî)]üµžÄØv:ç¿³Ö†‡Kq8w´r$ˆÖŽ"á(
+€8"#PâH®@
+DrøD
+´o‹ÈØ@	H '¼p‰5¢ä¤È)ˆ²	"/D¬½€H p¶ÑÙ§ rFgb	‚³'ŠáL‘:åD%â
+•DpÆ¡ÀK¼Á‹ ‚ŽŽ%èJ‚%1ºB/T)‚k‰n
+($è˜€‚$BNŽ
+
+ô£
+	*/  ‰Ð NYP	Nz¨D‚þ	TB‚$9ƒ‚$/P—t>tL¢5“ð"qÏ$Ý‰À
+Ý~;vÒ¿¦1ÚÖŒ¢{Ü¼ÙI+µúz1šº±»Ü×=5÷gÏÒÇÖû©JfR
+endstream
+endobj
+52 0 obj
+<< /Filter /FlateDecode /Length 20 >>         
+stream
+xÚc` f  Á ü
+endstream
+endobj
+53 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 1589 >>       
+stream
+xÚuUTS÷$ïÑ3KŒµyø¾Ok%ìQ‹Ý9u(±
+vj;4&ˆÀ
+$/¦tG!E"É7‹˜ò )eP+suÃvž¤ÛZê8µv?êÙötçtÎõûØ×n{ kÿèzÿ¸ßï¹÷~Ï÷ÞûùÜsIB­&H’|$³e¯%w¥`—«Ò&df¥ïâK½6÷¼3WN•W@-+§òrRfd ’95ÎÑª.hÕw³q<EãþÖ,'òÔwæõØC(A»B¹QÚGç
+ÃÚÇˆÄ‚$!XâoÄ¿Iš\D&“Æoû6Ë”‘ñDŽ«ªÆí,-¹¬ŒŒukçõ“Ü÷L\¾Í^îòyÊœMppù&®ÀÄY]>ÅêäV¹î _f«(á\%\¿‡ózx·‡+u»¼UžÕ&®¨Ìéá|.w9§œn¾‚·yx ç¼›ËxnÛîÂ".×%ˆœÅiçÏ¥§sœ‡ç¹2Q¬Ê6›Eo©Éå.5—(1sÅ½ yþ]zîkQº%/g«µp«I|AäJ\nÎÁ‹6g…Çô"¿2X]îJ[Åf‡ë ŸçàÑ)ÖŠ˜3‘EdùDQHØ'Q©RZ¨H‘4ßL5QIÜ"Ÿ!?Ix1áKU…šQ;Õoãÿèî@iN#‘hùuyé_Usyè¦íÆ2ãlßº©é&	¸ÛO—4úsXŸ€nSh2¢4T 2Â†ÂPú®Í¬íÐŽƒ˜Ôþ`kÈçéx¤õ{‡úÃ»ö¼×ÀØ¸ÒnÔ­òwûFä”näMFã3pÎ,ÑéÊíK%z[}ë@þ'AF ÛvlÀÕ´tøÀ•Á‰¯ÆK°þÓÕ(aæÂ¥®K#½º6ñ²ú¡2ÏAa/S‰zvº}´'»G /1CÅ?Šöa°Æ¨ÃúaìB?ð%Ì ú	ý;ò”dˆšêƒ@ÝPý}ÑÆØVö£Í 
+
+Ðú7z"°ëóÝ·ð"L­{/ÆËþž†T(ig@ZfÀ/Q(³ífg?óE§:Ã@‡:,¡£’¼J"/ÏÊ›n¨æì(`è`u.¬dÊŸ€‘* Ò7›jKÁvSøáúê§ðŽ_ tí¼ðÞ'ÿ°à­gÙºllg:`S7@~º¶øBA»ï)Í«‚õÍµÎÃëp&¶a;Z‡3Pþû7z¯ƒòÎø¡6¦
+FO”C4·\eu¨õ>¼ OÞy-|M57»TòÑ9±a ÷ÓÃM±i¶[ÂfÊ
+½P°p÷],È¿Ñt
+A‘Áæ¯ðÓUðùµ¬@GÎŽÃ~¦Ï‰^
+/žòëa5|ù ¦®¹©>Æü8Òr2
+Ðñ9&|÷÷Ô}ÞP‘Þ ÄHÁ`/Ð­‚ŠK“’ p˜Bö)ý r§B„½n8ÈBÏÂ~ñevDx>êdÒø¾zºMé?Ã)_¤.®ƒù
+)]VR’.ßKi{-ÈJßùÝ[{¬,®ýº^%…ó}hjû?ŸEfU2’†ÏÒnb†Åù&õ©HßÇJ	Ã`ø_Q }—F|qýs`Zjƒ
+¨XÐO©…¸E¡õk(–æ2Ï‘—¯ íW>¼¢’ ‹áq¬*Î–ŒŸpÄpBÿ²=?)¾tÕøÞ[“¢=xý([ÇcÌ	ØÒ	PñÃ£ÇØCVÍÄsyíû¬ÊÎzì¹Óû‡í`È1ôÒû5CõoéhH¼(î.4>ýì–Å'^ßÇîüÕñéP<1Ôæ‡ÐX 5 Ó50‹†#í­lümýÕIçŸ¤¾ñ)J :|Òß#%dñ%ßžòö ”ýt-6üÚ[Dç6Ç68{šEq”*áT/}™—
+¥—®ÉhLôÑúþ„ )¬º&ŽOÆ'¦YeöGäÄQòÔª¤FÉ4NýÑmôúâ-O?¸8Î¢?Þ÷ÌÀÆ,€ÓèX:pˆ­î{­ö—Ìé—¡ô
+zOý3iÝüÞY,3Ú•Êö 6Ío’W’Ÿ‘sN"W¬íÅæU˜µ@m’ôàTRW8ÒG›Ã‘Ñ“ZmÏ¹ŽH´¥)iŽ6kÉG—Ì=lø/½zý'
+endstream
+endobj
+54 0 obj
+<< /Filter /FlateDecode /Length 403 >>        
+stream
+xÚ…’]kÂ0†ïó+Î.wÑ5­_LJÁùNEel—59º€MJÚ^øï—ê`LVháÉyOÎÛ7é<lvÁ„«½'
+[¬T£Ó·¼$ÎL±¦@Y¯9òkµÃF+¶ÃºÓl–IQ?q&Ù¹áxUý-zÁ“?; º{ü^'ËÏå"X¾mU‘Ë(¶xjÎ¹¨mÛ‹úläÿ(Á”á^ÜFï¨+¡ä¢'J©Y˜K>U…ýÉŠ„­Q¯ÖBrÝº…ƒõN¢¸`uKîË
+“–mÞ]ª‹LIÍdQÕúâ|?’p­9j!OÐ½gÒˆvMYžÑJÒ8ÍÞ&§U^ „6Œ›ª¨/w£øiÚ_J„Øqä-3Å±*s†:—'$‰‰¦,Ì“”üW=¢¾ípd_¹¶òxnä”öû©£…£¡§^ìiàiâ•#Gý–fžf^9w4è9PGÃÈSÏÓ³£‘Ÿ0ô}£3Ûº²¶íÜbbÖ&#wP. ›€x;ËR•¶Ë½î\ï¤¥õ‚|è3ï;
+endstream
+endobj
+58 0 obj
+<< /Filter /FlateDecode /Length 23 >>         
+stream
+xÚc``PPrbÕ˜ÀèÐ À
+endstream
+endobj
+59 0 obj
+<< /Subtype /CIDFontType0C /Filter /FlateDecode /Length 2576 >>       
+stream
+xÚ•V{TgŸfc[*£3ƒoE>N•VÖ
+•—VZ°L(‘D0Á$€Ô*O•äK‚hxøÀ¢‚Ð‚«™ÝÚÖºvÕ>Vw{ÔvÛj±µµÒã©ŠwÒ/îÙ/`ÛínÿÙIÎ$3ßýîãwïý}WAR
+…",)cYæÊ%‘)©Ï›Öi³fG%˜
+rý+KdQŽ@!¼<Ž’Ç+d>@”ò¨@œ¢<è+ÄžqÌôqëéñ¥@#ý÷“Ã°	äßð×C&ù_ü9d2ÅP
+*Œâ¨ï(™¨eªß49;:6vn¢©°ÔlÈÓ[ÅÙ±±sfúïqbB´˜¬}%ßTbÉ7ˆZc®˜-¦F‹ËM%ä­Aœf2Š9:½¶`hZ#¦ë2Å"‹ÎlóÌ¦¢BËôh1]o°ˆ%&s¾H~ÍºÖ¢Ë‹Œ¹:³hÕëÄ%/¬H“LF«˜bxEg´èÄ¨(Q´èt¢Þj-|*&ÆZ”m2çÅ¬!2–˜‚!!KŒ_TÒ–§G¥,K\¼|Åâhë«¸ÆdsuV­¡Àýë~Z”kÊÑ-ËÕ­k)E.Žš@Í ¢©YÔ“Ô"*‘ZL-¡’©*ZA­¦´”ž* LÔzÊB)	˜äMöÃHm¤n*Ö*NLx5À£d”õÊ¿¾ø=A÷0Ë™±Iì;Ac‚:ƒ‚ßð!Õy$A¬$g—(¼'Â¤™,®÷ªèæjÛv
+g¶m-­°Ã÷ z#²™jÆÖ˜·¡"®TÃ8œEÜÁ‹ÈÖ&Hl‘5˜—9µ'!l´0áX:ŠÈuõ£#\×ÈÖ.às°U71ÇhÕ^böÝnh“0FÂ×0Né-‚TõwóÿG¸y˜tðÐ•ãá7æ}‰çò¾§4¾þœÉ@Üåoo
+x>|¥^œ›ˆƒy<Ú`s·%~¥p_V§žÂ,Sà]x™˜Ú‹©lAÕY&A~	XŠ¡DR|²Ã£ôVÀõÞ-Ž×**P¹Ç3+±:c—<§ù£‚þHþ)àÃ¿ß}ñøûü§ß©›ûFhñ³B¥Ó¹6äÜ/€‘mC®"þ™DúíK÷/âpŽÆ“ñœÓ‰c6HT0LP}$¹ŸÄ:	BåqþXÂu5ã™0§ñ¾¸GÆ1Ók<Î¡ÆÁ¯eèWñYú¥kgqx†Ü3˜o>1dô
+9û^ÂêpU6Ñ#Áé	¢zÄy`†§Üú£÷EhSk<½xM<Nàp,xÎ0·ës
+èÔ2ÏTh#ù4Ø±Lè1ˆêNÆêÝ‚‡1Bí»O|¹¡ñÒLh€j!Ñßáÿ*õÏñ€èuÕ;UNS
+;$Ì8;€A½¬°Ñ
+§ØÛ;W'K¨ZÉ§C Ld`N{±KPù¨G€L„1Jyt˜„ItkË›Š´œv*ræ	ôõã@
+ëì¹ƒ<œç²õ*œ]Ö} x9[R†¡J¹É;ZMöš'¡|§:i
+ð¾J6*ËQ…Úsù÷ÞŽÎðwr[
+òôæ¬gþ™	Œºqú./W²ªïÎÍ9š¸ã½&²/lÛ¾«BÀ­àƒJÈ¦šÜ;¿å$V´Ñëâ‘Ó,hØÖýöŠ‚õ
+Ãhè E”Çå‰Èi†2Ê:; ®ç²uR¬eï^î¢5µ[·…—¿„Šx"Ôu“´Iç-;©Ä_ÜQzƒÓ˜T½ÏÆK9‘`4Vb0Ay
+f~±"ŸfUÐûhßÔãò=¦ü±>LŠû $l`‹+Qq¥€«}oâjùMº¥’<sØ@6ŸgŠìöõÛx[i‰½”³’D¶}Žq‡¾ìl+[hC.‹`¬µ;ZÃåSÚ}èòíu{¹½uõ
+ÛèôÐ¿Œóà=ô÷Æ=d;(¨úŠâ¸¼å¸Ò{e(AÖxdâL
+Ó*hÚØƒNT³_èØæ°…ûžd}d
+ÝPaw”pxýÿë[7+WùnÒe
+{·Õµ	òe¶Õá8PË;›_w4sªËŽxëlÿdˆPzÛà¦ô˜‡)ØŒ-x<žŠópˆ8
+ÉG$µ•Çãˆ]êiåóW&ñsº&žKN9üWðòÅ­·.†àê;öwþ“?]h?Ã]>«ÉîzŸkL®ÚDšf÷89ÔïpÜoíE¹B
+ÔÌ«8Ž÷ÍÊó_µ±~ÇÂÓ7¯ÞpDØ24ÇðX€“ 0ƒâ–ª÷Ëº‹%èí†žÁv%Lq"B÷y?»¡Þ[åÚ¼Á^½ÙÎ¯ÜZPlâ~_}þF•°ådõ%Lu ×Ó}á/áw&ôáTÞGk˜Pý£ú¼ç÷áþ#za8{´«l}«Ði@EKÃ—¢œ>ô„þ½+öVî‡Æë»Ü%G«ÓísñÓ<†ÎÀ<W\iÌÙ„fJq’Ž*>¼i×=×•òX¥¾•z+Úy<þ0=­µæÂ®ðÝgúû¿Y…G·ðÅ.dßÇµ W› iì>´ãµê{E%¯y‰n1¯üãO\8
++–ö¬ÚµIx/ãÐ–{Ö;E¶Öâ ¦Í¦ÌpMñ8 
+0¥Šo¶#W	WŒj¬Nc7 êÝ;w=ßÐànjoÊ:}eóYbÏ
+*;)Ñk$GŸb‹ô7Û9E]BXíáT¦WÐîWawÙw
+GjXç„u~‚‹”¯}ÉÂ¤óp€[P])“dùLxKé=ÿŸµÿ[µþ8‹'NyÃ‰Û ü4/Ïÿ_î˜Åâ18 ² µ"Oðò¨_—óùÆb¯()¼ç†¬$¢*Îôì 5¶µ•¶nÂZŸÈôM‰±åG"—?m»®³Ðñp8]âvÛ÷p{êQ‹[€fù>ÝTW[‰SÉ#‡”
+´jÇ
+mL@N
+ÑÝx
+mB¨fá“¾çñ¹€þÎ¯=šh/˜1(ÓÇÃï£pY½EVÓIlù3 m÷±Pù0ˆ~µÎUÝÊµºvì© AÖB¢OKo|¹o{í¾”Ê?ÐÍ;œu}œHñ³‰÷l˜Éâ:€x(®oªuv»ÆºÔ’Yä ±b}š ^0wˆßAež‚3ÉIœKEÖó¢Pg 
+š~Ìøcœ…[*Ëjjô5cmæ­vWèg™Ë„eíŸY$¶<5rWÂRì¢çûgš;þ™æ®ý'Çà!9…¼—†RaJGë8SâP*Ú òv¡º§ã#8> ûü`M&`¦:r›§¦ñÆÁf¼Ošñ9çºI„,”ÁºÉ]çþŒSù ðÇd.d
+™¢©þ‰úèeršV¿^ßÈðÉé1!Á(d¸4Ã;\—ËátìÜÑðiHˆ§ö­ÆíN÷—Ó]2B>;Ê»_ýoáï˜>
+endstream
+endobj
+60 0 obj
+<< /Filter /FlateDecode /Length 453 >>        
+stream
+xÚ}“Ëjë0†÷~
+E ]¸–ØiK0$N\§’ÐËÒ‘&© –Œl/òö•4J
+‡p6|š4¿FãÑŸ×m¸àjáä–’
+tjÐÂâ©nƒÑh¥ØÐ€ìŸ8ðK´{ ¯Z±-ôd\T«JŠþÆˆ+ÉN‡‹êºh	G!%¶ïà#,ß«ÏÇðïÓF5µŒ“p©N<¤6g'ú“ÑþOFLŒ\·ÅèN(ù@â[J©YXK^¨Æž­
+"ïDÇ !¹ö&ÉÞZâ„pÁzOîËÓ$›¼=w=4•<¨`>'ÑÆ»^Ÿã› zÑ´G2¾êÐ(¶CÛžÀº!4ÈsÂá`66½y® ‘=xÅMTôçëøÍØ[ ‰ãÍ2Å¡kkº–Gæ¦4'óÒ<y ’ÿOLÛØW­­<^9¥Ó8·”$H	Òi‚´Fš:šÄH)R†”9šúØ=Òi”"-‘fH’¯·B*ÖŽRŠT"ážfÑQ‰„®3¬ž¢ëì	]g¸gŠ®3Ÿ‡®g>o†ä+Ü!¡ëôÞ5ÕwÏ¶×NÉÏ]²Aks‘n”Ü}Ù›~¦­U­Ír¯ÓËÏbé¥¾k
+	Ê
+endstream
+endobj
+63 0 obj
+<< /Producer (LuaTeX-1.22.0) /Creator (TeX) /CreationDate (D:20260204131419Z) /ModDate (D:20260204131419Z) /Trapped /False /PTEX.FullBanner (This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)) >>
+endobj
+13 0 obj
+<< /Type /ObjStm /N 36 /First 271 /Filter /FlateDecode /Length 2105 >>       
+stream
+xÚµYkO\Gýî_Ñ­Èôû!E‘ ‡¯Ézƒ&p—	3ˆKñ¿Ï©ªî{ç.`’¯§ŸÕUÝuºNVieT)ÊxeQ&¨hP3*{ôURT%²²Ô¯½2¨'TlP&‡ðÊÒ”MQ¢*ÊF“ÄÙ‚rVÙâPwø£B)ä¨\Â?ëõMÿ)oS~•”÷âò"¼W>«|PÁ`ZTÁë |Q!x«‚V!YêS!;¯ ¿øa;ì«€	&„¤btZy³ÏèS±d§ 7™ˆFüZ]^ýü³š}øzÝ©Ù»ùþß]^­»«õJ9ìÓ{5{ß­–_nÎº6ºóÅ|gù·:Aª”ð“ÅrÙ›ŸrQ§$çh!ÿË/¼ÄÄ*.X+’ö°c¡
+Ì”¢…f­5`ëj«Ã&×"ŸG- :9YKß,Ï»5T›½{½ Ãº¿×P	:œÐQ¨
+˜“rB;6Mì“E{‹*N•ªkÓ—Rà§´ÿ'ØÃXG š“æQ4‚å_»£ÝXÕ€*y
+ÆÁÓï©Âôžqè6ÒÄDr
+Ü‘$Ò5ÓHR»-EšÐ¯ÇPú0¤Ô!§
+}ëd²ômÐ&Úí«©Î›^"µ“ˆ ÏBÙ˜jdœ¥Ìò¡*•3•K¦²e{ð•gÉl1àtÃÕÈ^w«³›Åõzy#õ?æŸÉ	?üëíÁûåçùUÙÚ_Ï/gq9¿XÁqxèŽ¸ß–EmÙbeF°¥ufÛ«3ö?ªÎvç×¿w‹‹ÿ¯¡¹S3Z”:yÖL„o_]\vj
+ç1;\wŸ°
+(~ªÓ< É‹î-.;À§ºæîþkr47|0¢¾üµæ*5j5ûõêly¾¸ºÀªçÐ`±þºõ»šíÌWŒŸ2\4>ŸC%Áò„®(Z–~Xþyµ€Ø—Òƒz@cj©ê<¼ð7gd*R?Ò½ÙoÁ×vlÿêKÆöûîb±Zß|U?lŸ/ÿê~T³ÿÜœw7dõÍêI¥ëëËî3ƒ&ØðÌ…<6°ûWxâ^xRƒ'._ø`dé®ñä†E§6‚ o
+¸J+B“''
+ä£ÅÑuÕƒ³à‘yNï›Te$4µ‰DÁ£¬*¸Q'me23{"^†*.wêõQó‡fR@d•ÀÐ›Û¨ÄØ#¥Dˆà3ÓÍuKYZTõ Žå
+i Œ “ÁÝÁÑö§ƒ?ØY^žO@.àx€¶è	r.Ž ‡êrq¹2†œî‡ë| œ÷›€³n8kŸ
+pw}n6Ü†›õO†ÛÄ^ÏÆš6«_l	 	Æôq>'ÞæÉ…k‘Ã F¬F ]{k• X‹™á×ÄD×÷Hô#¤%€Ñ/PdØiÁ¡ƒŠOfÍ€Q™,‘¡jmòU´ 0èk c±°d‰\Y–##ŒÖ½B5 âúvÎn®Ð¥! ú„ ãFÐã»ÀXÓËµ½fÅÞö‡7îþÖüÁè "ö@¥Ý4†¿ñÂ}OßñìdÄ³eÀü\ œ´ü6¹A§ŸŒÁé=ÿ†©‡a|9Ÿ‡k¦” (‚3$„’ÂéVÄS¿}ëæ°
+w7JðèÐ‘e6LæP«‚É@nQÑ°<4
+xb
+~§LÁDz…‘‚ùdLbuC/ØÄ(ªÒGÊ°|DúhŠH)¦
+n E¬pˆv<ºø U’,PŠ i›í¥ZÒ•ƒxøræ	¦Êš‚ØZšÊ{f, lçº*BK©¦=Éoö?½{³áUp/—ó›)(ÃÊ[ûäUODRð§)»0Â±óÏ…ãi»ï rºÈñÉ@¾gËÇÇä\C²³/Ç^#½ÐáóìÍÂ^áuÑ•ž½:	4Îþ2^SÒv©§­”&}T-€ãF]	i<O¨+AÉ”È˜W´él±µWX¬F½„Ü³X–#,6Ê*ô%J<P‚Â'þZ„5…å§¡—QÁ´ÊÉ£?ÿ†§¥,&€¥íŠ:õ8må<”%²Ê|Æ©èý8<îÿwó–¿‡ÖR$ ¬À©ieðX7¦µî>Z¦h-.Ô)ZëÍ^?'¬¾
+EïnCÑÛ'Cqj·¿Áaéq˜_.¢&B™W©³9ò›Z”lS^hóc=åÛ7ÕæÔÊÒõ!{^„¾L¬Öø>ëCëÓl±Ã¯È“Àê)Õc[Ãá¦Í!T¡q“©Ìš0i²$i7ê¥áÀr}V(™GÁ³¶·Ûs’ôj7ùØYËy(Û¶"ÿqX<:Úûugxõ<±q5¯ƒý††yówäu†Ð8Ôñã¤Ž¶¤Î¤ÙwÀñŽ¬ŽzVgzÃÇgäû´Ž‘´gh	ÂPÙy\è™iì	f.©…$Ë™”	(eh¥ä½%7^kþñ~øfûíñÛ½þ–²9"hä–ÍôÜ*þ;9ZžähfÒÃ8Ùž-Ù1m÷mOw$<ÂÓ÷lùø˜BŸô/—ôÈaÈ,òCBx™q-›˜9	/™D—{:¦‡<¡-öHöÂX8Ÿ7ð­ ®Å©½Ä‚sÿ`Ê>4ÿNqàSÌØÕãf–^2î:³ra OA’Ž3“Qîé°Ñ1˜û8lì}ÜÿtüÛÆAÝÇ—ñ%¼È%÷¡Ä.ÝÃ—òdöNñ¥0ÎB„gËBLX}ñŽD|zbj·¿ÁDŸ/ÿío¥è¯_è Õìß‹sN~V›Gƒwç8½åE›5ü¡ïH§
+endstream
+endobj
+64 0 obj
+<< /Type /XRef /Index [ 0 65 ] /Size 65 /W [ 1 2 1 ] /Root 62 0 R /Info 63 0 R /ID [ <2F544C345A1E0C5D8570B1E9E05D054E> <2F544C345A1E0C5D8570B1E9E05D054E> ] /Filter /FlateDecode /Length 191 >>        
+stream
+xÚÊ+k‚ÅñsÔy¿¿^¦snjmAy¿Åàm~Ë@LãØªa]\mŠ¸`±ÖýzžðãÀŸàæC‚" í«TäQr’–¸„% uþ.ìç?è¬ÀÖÞÚƒ%Äöl_ÀáÁzD¢£ÛÝ%ø6·ž¤¤èÅ@o¾ï¬g$+§3pz?†ÖóR"?ÏàW\õ­—¤,O\ÿ?póoýYªòÂíÜ5Áã·õš4xÚ‚—.îdÜ!|
+endstream
+endobj
+startxref
+53814
+%%EOF
